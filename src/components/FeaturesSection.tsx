@@ -1,26 +1,28 @@
 import { useEffect, useRef, useState } from "react";
+import { Globe, Lightning, UsersThree } from "@phosphor-icons/react";
+import type { Icon } from "@phosphor-icons/react";
 
 interface Feature {
-  icon: string;
+  Icon: Icon;
   title: string;
   description: string;
 }
 
 const features: Feature[] = [
   {
-    icon: "🌐",
+    Icon: Globe,
     title: "Вся экосистема",
     description:
       "Не нужно 10 приложений. Все корты, все игроки, все турниры — в одном месте.",
   },
   {
-    icon: "⚡",
+    Icon: Lightning,
     title: "Мгновенно",
     description:
       "Хочешь сыграть сегодня? Открой приложение, найди матч, забронируй корт. 3 минуты — готово.",
   },
   {
-    icon: "🤝",
+    Icon: UsersThree,
     title: "Живое комьюнити",
     description:
       "Находи партнёров, заводи друзей, расти вместе с сообществом игроков.",
@@ -70,21 +72,21 @@ const FeaturesSection = () => {
           {features.map((feature, index) => (
             <div
               key={feature.title}
-              className={`text-center p-8 rounded-3xl transition-all duration-500 hover:bg-card ${
+              className={`group text-center p-8 rounded-3xl transition-all duration-500 hover:bg-card ${
                 isVisible
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-8"
               }`}
               style={{ transitionDelay: `${(index + 1) * 100}ms` }}
             >
-              <div
-                className="text-7xl mb-6"
+              <feature.Icon
+                size={72}
+                weight="duotone"
+                className="text-primary mx-auto mb-6 group-hover:scale-110 transition-transform duration-300"
                 style={{
                   filter: "drop-shadow(0 0 20px hsl(152 100% 50% / 0.4))",
                 }}
-              >
-                {feature.icon}
-              </div>
+              />
               <h3 className="text-display-sm mb-4">{feature.title}</h3>
               <p className="text-muted-foreground leading-relaxed">
                 {feature.description}

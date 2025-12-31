@@ -1,5 +1,6 @@
 import { useState, FormEvent, useRef, useEffect } from "react";
 import { toast } from "sonner";
+import { Gift, CheckCircle } from "@phosphor-icons/react";
 
 const WaitlistCTA = () => {
   const [email, setEmail] = useState("");
@@ -67,7 +68,7 @@ const WaitlistCTA = () => {
                 : "opacity-0 translate-y-8"
             }`}
           >
-            <span className="text-xl">🎉</span>
+            <Gift size={24} weight="duotone" className="text-primary" />
             <span className="font-medium text-sm">Эксклюзивное предложение</span>
           </div>
 
@@ -129,10 +130,12 @@ const WaitlistCTA = () => {
             }`}
           >
             <span className="flex items-center gap-2">
-              <span>✓</span> Отписаться можно в любой момент
+              <CheckCircle size={16} weight="fill" className="text-primary-foreground/80" />
+              Отписаться можно в любой момент
             </span>
             <span className="flex items-center gap-2">
-              <span>✓</span> Никакого спама
+              <CheckCircle size={16} weight="fill" className="text-primary-foreground/80" />
+              Никакого спама
             </span>
           </div>
         </div>

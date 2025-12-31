@@ -1,4 +1,4 @@
-import { ChevronDown } from "lucide-react";
+import { CaretDown, Fire, CheckCircle } from "@phosphor-icons/react";
 import mockupHome from "@/assets/mockup-home.jpeg";
 import mockupClub from "@/assets/mockup-club.jpeg";
 import mockupMatch from "@/assets/mockup-match.jpeg";
@@ -19,7 +19,7 @@ const HeroSection = () => {
           <div className="lg:col-span-7 space-y-8">
             {/* Badge */}
             <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border-2 border-primary/50 bg-primary/10 neon-border animate-fade-in">
-              <span className="text-xl">🔥</span>
+              <Fire size={24} weight="duotone" className="text-primary animate-pulse" />
               <span className="font-medium text-sm text-foreground">
                 Первые 100 человек получают скидку 30%
               </span>
@@ -59,17 +59,19 @@ const HeroSection = () => {
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-border text-foreground font-display font-semibold rounded-full hover:border-primary hover:text-primary transition-all duration-300"
               >
                 Как это работает
-                <ChevronDown size={18} />
+                <CaretDown size={18} weight="bold" />
               </a>
             </div>
 
             {/* Trust Indicators */}
             <div className="flex flex-wrap gap-6 text-sm text-muted-foreground animate-fade-in" style={{ animationDelay: "0.6s" }}>
               <span className="flex items-center gap-2">
-                <span className="text-primary">✓</span> Бесплатно навсегда
+                <CheckCircle size={18} weight="fill" className="text-primary" />
+                Бесплатно навсегда
               </span>
               <span className="flex items-center gap-2">
-                <span className="text-primary">✓</span> Работает в браузере
+                <CheckCircle size={18} weight="fill" className="text-primary" />
+                Работает в браузере
               </span>
             </div>
           </div>
@@ -120,7 +122,7 @@ const HeroSection = () => {
         {/* Scroll Indicator */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted-foreground bounce-slow">
           <span className="text-sm">Листай вниз</span>
-          <ChevronDown size={20} />
+          <CaretDown size={20} weight="bold" className="animate-bounce" />
         </div>
       </div>
     </section>

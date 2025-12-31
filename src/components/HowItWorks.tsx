@@ -1,33 +1,35 @@
 import { useEffect, useRef, useState } from "react";
+import { DeviceMobile, MagnifyingGlass, CheckCircle, NumberCircleOne, NumberCircleTwo, NumberCircleThree } from "@phosphor-icons/react";
+import type { Icon } from "@phosphor-icons/react";
 
 interface Step {
-  number: string;
+  NumberIcon: Icon;
   title: string;
   description: string;
-  icon: string;
+  Icon: Icon;
 }
 
 const steps: Step[] = [
   {
-    number: "01",
+    NumberIcon: NumberCircleOne,
     title: "Открой приложение",
     description:
       "Заходи с любого устройства — работает в браузере, не нужно ничего скачивать.",
-    icon: "📱",
+    Icon: DeviceMobile,
   },
   {
-    number: "02",
+    NumberIcon: NumberCircleTwo,
     title: "Найди игроков или корт",
     description:
       "Смотри открытые матчи, выбирай клуб на карте, проверяй свободное время.",
-    icon: "🔍",
+    Icon: MagnifyingGlass,
   },
   {
-    number: "03",
+    NumberIcon: NumberCircleThree,
     title: "Бронируй и играй",
     description:
       "Подтверди бронь, получи напоминание, приезжай и наслаждайся игрой.",
-    icon: "✓",
+    Icon: CheckCircle,
   },
 ];
 
@@ -102,8 +104,8 @@ const HowItWorks = () => {
           <div className="grid md:grid-cols-3 gap-12 md:gap-8">
             {steps.map((step, index) => (
               <div
-                key={step.number}
-                className={`relative text-center transition-all duration-700 ${
+                key={step.title}
+                className={`group relative text-center transition-all duration-700 ${
                   isVisible
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 translate-y-12"
@@ -111,9 +113,14 @@ const HowItWorks = () => {
                 style={{ transitionDelay: `${(index + 1) * 200}ms` }}
               >
                 {/* Step Number */}
-                <div className="font-display text-6xl md:text-7xl font-bold text-primary neon-text mb-6">
-                  {step.number}
-                </div>
+                <step.NumberIcon 
+                  size={64} 
+                  weight="duotone" 
+                  className="text-primary mx-auto mb-6 group-hover:scale-110 transition-transform duration-300"
+                  style={{
+                    filter: "drop-shadow(0 0 40px hsl(152 100% 50% / 0.4))",
+                  }}
+                />
 
                 {/* Title */}
                 <h3 className="text-display-sm mb-4">{step.title}</h3>
@@ -124,7 +131,11 @@ const HowItWorks = () => {
                 </p>
 
                 {/* Icon */}
-                <div className="text-4xl opacity-50">{step.icon}</div>
+                <step.Icon 
+                  size={48} 
+                  weight="duotone" 
+                  className="text-muted-foreground/50 mx-auto group-hover:text-primary/50 transition-colors duration-300" 
+                />
               </div>
             ))}
           </div>
