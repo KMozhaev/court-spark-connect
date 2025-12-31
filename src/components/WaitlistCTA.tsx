@@ -1,9 +1,13 @@
 import { useState, FormEvent, useRef, useEffect } from "react";
 import { toast } from "sonner";
+import { Gift, CheckCircle } from "@phosphor-icons/react";
 
 const WaitlistCTA = () => {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -27,8 +31,20 @@ const WaitlistCTA = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     
-    if (!email) {
+    if (!name.trim()) {
+      toast.error("Пожалуйста, введите имя");
+      return;
+    }
+    
+    if (!email.trim()) {
       toast.error("Пожалуйста, введите email");
+      return;
+    }
+
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      toast.error("Пожалуйста, введите корректный email");
       return;
     }
 
@@ -37,8 +53,8 @@ const WaitlistCTA = () => {
     // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
     
+    setIsSubmitted(true);
     toast.success("Вы успешно записаны в лист ожидания!");
-    setEmail("");
     setIsSubmitting(false);
   };
 
@@ -46,95 +62,80 @@ const WaitlistCTA = () => {
     <section
       id="waitlist"
       ref={sectionRef}
-      className="py-24 md:py-32 relative overflow-hidden"
+      className="py-24 md:py-32 gradient-cta text-white"
     >
-      {/* Gradient Background */}
-      <div className="absolute inset-0 gradient-cta" />
-      
-      {/* Noise Overlay */}
-      <div className="absolute inset-0 noise-overlay" />
-      
-      {/* Radial Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-foreground/10 rounded-full blur-[150px] pointer-events-none" />
-
-      <div className="container mx-auto relative z-10">
-        <div className="max-w-3xl mx-auto text-center">
-          {/* Badge */}
-          <div
-            className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-background/90 text-foreground mb-8 transition-all duration-700 ${
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-8"
-            }`}
-          >
-            <span className="text-xl">🎉</span>
-            <span className="font-medium text-sm">Эксклюзивное предложение</span>
-          </div>
-
+      <div className="container mx-auto max-w-2xl">
+        <div
+          className={`text-center transition-all duration-700 ${
+            isVisible
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-8"
+          }`}
+        >
           {/* Title */}
-          <h2
-            className={`text-display-lg md:text-display-xl text-primary-foreground mb-6 transition-all duration-700 delay-100 ${
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-8"
-            }`}
-          >
-            Стань одним из первых 100
+          <h2 className="text-display-xl mb-6">
+            Стань одним из первых
           </h2>
 
           {/* Description */}
-          <p
-            className={`text-lg md:text-xl text-primary-foreground/80 mb-10 max-w-xl mx-auto transition-all duration-700 delay-200 ${
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-8"
-            }`}
-          >
-            Запишись в лист ожидания и получи 30% скидку на первое бронирование
-            через приложение.
+          <p className="text-lg md:text-xl text-white/80 mb-8 max-w-xl mx-auto">
+            Запишись в лист ожидания и получи ранний доступ к приложению.
           </p>
 
-          {/* Form */}
-          <form
-            onSubmit={handleSubmit}
-            className={`flex flex-col sm:flex-row gap-4 max-w-xl mx-auto mb-6 transition-all duration-700 delay-300 ${
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-8"
-            }`}
-          >
-            <input
-              type="email"
-              placeholder="Твой email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="flex-1 h-14 md:h-16 px-6 md:px-8 bg-foreground/95 text-background rounded-full text-base font-medium placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-background/50 transition-all"
-              required
-            />
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="h-14 md:h-16 px-8 md:px-12 bg-background text-foreground font-display font-semibold rounded-full hover:scale-105 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed shadow-lg"
-            >
-              {isSubmitting ? "Загрузка..." : "Записаться →"}
-            </button>
-          </form>
-
-          {/* Trust Indicators */}
-          <div
-            className={`flex flex-wrap justify-center gap-6 text-sm text-primary-foreground/60 transition-all duration-700 delay-400 ${
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-8"
-            }`}
-          >
-            <span className="flex items-center gap-2">
-              <span>✓</span> Отписаться можно в любой момент
-            </span>
-            <span className="flex items-center gap-2">
-              <span>✓</span> Никакого спама
+          {/* Promo Box */}
+          <div className="inline-flex items-center gap-3 px-6 py-4 rounded-2xl bg-accent-green/20 border border-accent-green/30 mb-10">
+            <Gift size={24} weight="duotone" className="text-accent-green" />
+            <span className="text-base font-medium">
+              30% скидка на первое бронирование для первых 100 участников
             </span>
           </div>
+
+          {isSubmitted ? (
+            /* Success State */
+            <div className="p-8 rounded-3xl bg-accent-green/20 border border-accent-green/30">
+              <CheckCircle size={64} weight="duotone" className="text-accent-green mx-auto mb-4" />
+              <p className="text-xl font-semibold">
+                Спасибо! Вы в списке ожидания.
+              </p>
+              <p className="text-white/70 mt-2">
+                Мы сообщим вам о запуске приложения.
+              </p>
+            </div>
+          ) : (
+            /* Form */
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <input
+                type="text"
+                placeholder="Ваше имя"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="w-full h-14 px-6 bg-white/10 border border-white/20 text-white rounded-full text-base placeholder:text-white/60 focus:outline-none focus:border-white/50 transition-colors"
+                required
+              />
+              <input
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full h-14 px-6 bg-white/10 border border-white/20 text-white rounded-full text-base placeholder:text-white/60 focus:outline-none focus:border-white/50 transition-colors"
+                required
+              />
+              <input
+                type="tel"
+                placeholder="Телефон (опционально)"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                className="w-full h-14 px-6 bg-white/10 border border-white/20 text-white rounded-full text-base placeholder:text-white/60 focus:outline-none focus:border-white/50 transition-colors"
+              />
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full h-14 bg-primary text-white font-display font-bold text-lg rounded-full btn-hover disabled:opacity-70 disabled:cursor-not-allowed"
+              >
+                {isSubmitting ? "Отправка..." : "Записаться →"}
+              </button>
+            </form>
+          )}
         </div>
       </div>
     </section>
