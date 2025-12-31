@@ -1,28 +1,29 @@
 import { useEffect, useRef, useState } from "react";
-import { MagnifyingGlass, DeviceMobile, CurrencyCircleDollar } from "@phosphor-icons/react";
-import type { Icon } from "@phosphor-icons/react";
 
-interface ProblemCard {
-  Icon: Icon;
+interface PainCard {
+  icon: string;
   title: string;
   description: string;
 }
 
-const problemCards: ProblemCard[] = [
+const painCards: PainCard[] = [
   {
-    Icon: MagnifyingGlass,
-    title: "Поиск партнеров",
-    description: "Тратите часы в Telegram-чатах, пытаясь найти игрока нужного уровня",
+    icon: "😤",
+    title: "Нет партнеров",
+    description:
+      "Хочешь сыграть сегодня, но друзья заняты. Пишешь в чаты Telegram — никто не отвечает. Снова сидишь дома.",
   },
   {
-    Icon: DeviceMobile,
-    title: "Разные приложения",
-    description: "У каждого клуба своя система бронирования или вообще только телефон",
+    icon: "🤷‍♂️",
+    title: "Где корты?",
+    description:
+      "Каждый клуб — отдельный сайт. Приходится звонить в 5 мест, чтобы найти свободное время.",
   },
   {
-    Icon: CurrencyCircleDollar,
-    title: "Дорого играть",
-    description: "Приходится оплачивать весь корт, когда играете вдвоем",
+    icon: "🚪",
+    title: "Закрытые комьюнити",
+    description:
+      "Переехал или только начал играть? Каждый клуб — своя тусовка. Сложно влиться.",
   },
 ];
 
@@ -48,33 +49,39 @@ const ProblemSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="section-padding bg-white">
-      <div className="container mx-auto">
+    <section
+      ref={sectionRef}
+      className="py-24 md:py-32 bg-background-secondary relative"
+    >
+      {/* Subtle Grain */}
+      <div className="absolute inset-0 noise-overlay" />
+
+      <div className="container mx-auto relative z-10">
         {/* Section Title */}
         <h2
-          className={`text-display-lg text-center mb-12 md:mb-16 transition-all duration-700 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          className={`text-display-lg md:text-display-xl text-center mb-16 md:mb-20 transition-all duration-700 ${
+            isVisible
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-8"
           }`}
         >
-          Знакомые проблемы?
+          Знакомо?
         </h2>
 
-        {/* Cards Grid */}
+        {/* Pain Cards Grid */}
         <div className="grid md:grid-cols-3 gap-6 md:gap-8">
-          {problemCards.map((card, index) => (
+          {painCards.map((card, index) => (
             <div
               key={card.title}
-              className={`group p-8 bg-background rounded-[20px] transition-all duration-500 hover:shadow-medium hover:-translate-y-1 ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              className={`group p-8 md:p-10 rounded-3xl bg-card border border-border/50 hover:border-primary/50 transition-all duration-500 hover-lift ${
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
               }`}
               style={{ transitionDelay: `${(index + 1) * 100}ms` }}
             >
-              <card.Icon
-                size={48}
-                weight="duotone"
-                className="text-primary mb-6 group-hover:scale-110 transition-transform duration-300"
-              />
-              <h3 className="text-display-sm mb-3 text-foreground">
+              <div className="text-6xl md:text-7xl mb-6">{card.icon}</div>
+              <h3 className="text-display-sm mb-4 text-foreground">
                 {card.title}
               </h3>
               <p className="text-muted-foreground leading-relaxed">

@@ -1,9 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { Buildings, Users, Globe, TrendUp } from "@phosphor-icons/react";
-import type { Icon } from "@phosphor-icons/react";
 
 interface Stat {
-  Icon: Icon;
   value: string;
   label: string;
   trend: string;
@@ -11,19 +8,16 @@ interface Stat {
 
 const stats: Stat[] = [
   {
-    Icon: Buildings,
     value: "560+",
     label: "кортов в России",
     trend: "+400% за 3 года",
   },
   {
-    Icon: TrendUp,
     value: "6.2 млрд ₽",
     label: "оборот рынка",
     trend: "×2 за год",
   },
   {
-    Icon: Globe,
     value: "25 млн",
     label: "игроков в мире",
     trend: "×2 за 5 лет",
@@ -84,20 +78,13 @@ const MarketStats = () => {
           {stats.map((stat, index) => (
             <div
               key={stat.label}
-              className={`group text-center transition-all duration-700 ${
+              className={`text-center transition-all duration-700 ${
                 isVisible
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-12"
               }`}
               style={{ transitionDelay: `${(index + 1) * 150}ms` }}
             >
-              {/* Icon */}
-              <stat.Icon 
-                size={32} 
-                weight="duotone" 
-                className="text-primary mx-auto mb-4 group-hover:scale-110 transition-transform duration-300" 
-              />
-
               {/* Value */}
               <div className="font-display text-5xl md:text-6xl font-bold text-primary neon-text mb-4">
                 {stat.value}

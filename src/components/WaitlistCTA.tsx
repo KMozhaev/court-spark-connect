@@ -1,11 +1,9 @@
 import { useState, FormEvent, useRef, useEffect } from "react";
 import { toast } from "sonner";
-import { Gift, CheckCircle } from "@phosphor-icons/react";
 
 const WaitlistCTA = () => {
-  const [formData, setFormData] = useState({ name: "", email: "", phone: "" });
+  const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -29,8 +27,8 @@ const WaitlistCTA = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     
-    if (!formData.name || !formData.email || !formData.phone) {
-      toast.error("Пожалуйста, заполните все поля");
+    if (!email) {
+      toast.error("Пожалуйста, введите email");
       return;
     }
 
@@ -39,15 +37,8 @@ const WaitlistCTA = () => {
     // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
     
-    setIsSuccess(true);
     toast.success("Вы успешно записаны в лист ожидания!");
-    
-    // Reset after 3 seconds
-    setTimeout(() => {
-      setIsSuccess(false);
-      setFormData({ name: "", email: "", phone: "" });
-    }, 3000);
-    
+    setEmail("");
     setIsSubmitting(false);
   };
 
@@ -55,100 +46,95 @@ const WaitlistCTA = () => {
     <section
       id="waitlist"
       ref={sectionRef}
-      className="section-padding gradient-dark relative overflow-hidden"
+      className="py-24 md:py-32 relative overflow-hidden"
     >
+      {/* Gradient Background */}
+      <div className="absolute inset-0 gradient-cta" />
+      
+      {/* Noise Overlay */}
+      <div className="absolute inset-0 noise-overlay" />
+      
+      {/* Radial Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-foreground/10 rounded-full blur-[150px] pointer-events-none" />
+
       <div className="container mx-auto relative z-10">
-        <div className="max-w-2xl mx-auto text-center">
-          {/* Title */}
-          <h2
-            className={`text-display-lg text-white mb-4 transition-all duration-700 ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-            }`}
-          >
-            Запишись в лист ожидания
-          </h2>
-
-          {/* Subtitle */}
-          <p
-            className={`text-lg text-white/70 mb-8 transition-all duration-700 delay-100 ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-            }`}
-          >
-            Запуск в марте 2025. Успей получить эксклюзивные условия для первых пользователей.
-          </p>
-
-          {/* Promo Box */}
+        <div className="max-w-3xl mx-auto text-center">
+          {/* Badge */}
           <div
-            className={`p-6 rounded-2xl bg-accent/20 border border-accent/30 mb-8 transition-all duration-700 delay-200 ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-background/90 text-foreground mb-8 transition-all duration-700 ${
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-8"
             }`}
           >
-            <div className="flex items-center justify-center gap-2 mb-2">
-              <Gift size={24} weight="duotone" className="text-accent" />
-              <h3 className="text-lg font-display font-bold text-white">
-                Бонус для ранних пользователей
-              </h3>
-            </div>
-            <p className="text-white/80">
-              Первые 500 человек получат бесплатный месяц Premium и скидку 20% на первый абонемент
-            </p>
+            <span className="text-xl">🎉</span>
+            <span className="font-medium text-sm">Эксклюзивное предложение</span>
           </div>
 
-          {/* Form or Success */}
-          {isSuccess ? (
-            <div
-              className="p-6 rounded-2xl bg-accent/20 border border-accent/30"
+          {/* Title */}
+          <h2
+            className={`text-display-lg md:text-display-xl text-primary-foreground mb-6 transition-all duration-700 delay-100 ${
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-8"
+            }`}
+          >
+            Стань одним из первых 100
+          </h2>
+
+          {/* Description */}
+          <p
+            className={`text-lg md:text-xl text-primary-foreground/80 mb-10 max-w-xl mx-auto transition-all duration-700 delay-200 ${
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-8"
+            }`}
+          >
+            Запишись в лист ожидания и получи 30% скидку на первое бронирование
+            через приложение.
+          </p>
+
+          {/* Form */}
+          <form
+            onSubmit={handleSubmit}
+            className={`flex flex-col sm:flex-row gap-4 max-w-xl mx-auto mb-6 transition-all duration-700 delay-300 ${
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-8"
+            }`}
+          >
+            <input
+              type="email"
+              placeholder="Твой email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="flex-1 h-14 md:h-16 px-6 md:px-8 bg-foreground/95 text-background rounded-full text-base font-medium placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-background/50 transition-all"
+              required
+            />
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="h-14 md:h-16 px-8 md:px-12 bg-background text-foreground font-display font-semibold rounded-full hover:scale-105 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed shadow-lg"
             >
-              <div className="flex items-center justify-center gap-2">
-                <CheckCircle size={24} weight="fill" className="text-accent" />
-                <p className="text-white font-semibold">
-                  Спасибо! Мы отправим вам приглашение в марте 2025
-                </p>
-              </div>
-            </div>
-          ) : (
-            <form
-              onSubmit={handleSubmit}
-              className={`flex flex-col gap-4 max-w-md mx-auto transition-all duration-700 delay-300 ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              }`}
-            >
-              <input
-                type="text"
-                placeholder="Ваше имя"
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="input-glass"
-                required
-              />
-              <input
-                type="email"
-                placeholder="Email"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="input-glass"
-                required
-              />
-              <input
-                type="tel"
-                placeholder="Телефон"
-                value={formData.phone}
-                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                className="input-glass"
-                required
-              />
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full py-4 bg-primary text-white font-display font-bold rounded-full hover:-translate-y-0.5 hover:shadow-xl hover:bg-blue-dark transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed"
-              >
-                {isSubmitting ? "Отправка..." : "Записаться в лист ожидания"}
-              </button>
-              <p className="text-sm text-white/50">
-                Мы не передаём ваши данные третьим лицам и не спамим
-              </p>
-            </form>
-          )}
+              {isSubmitting ? "Загрузка..." : "Записаться →"}
+            </button>
+          </form>
+
+          {/* Trust Indicators */}
+          <div
+            className={`flex flex-wrap justify-center gap-6 text-sm text-primary-foreground/60 transition-all duration-700 delay-400 ${
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-8"
+            }`}
+          >
+            <span className="flex items-center gap-2">
+              <span>✓</span> Отписаться можно в любой момент
+            </span>
+            <span className="flex items-center gap-2">
+              <span>✓</span> Никакого спама
+            </span>
+          </div>
         </div>
       </div>
     </section>
