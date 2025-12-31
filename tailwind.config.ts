@@ -2,20 +2,25 @@ import type { Config } from "tailwindcss";
 
 export default {
   darkMode: ["class"],
-  content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
+  content: [
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   prefix: "",
   theme: {
     container: {
       center: true,
-      padding: "1.5rem",
+      padding: "2rem",
       screens: {
         "2xl": "1400px",
       },
     },
     extend: {
       fontFamily: {
-        display: ["Unbounded", "sans-serif"],
-        body: ["Work Sans", "sans-serif"],
+        display: ["Commissioner", "sans-serif"],
+        body: ["Manrope", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -24,14 +29,15 @@ export default {
         background: "hsl(var(--background))",
         "background-secondary": "hsl(var(--background-secondary))",
         foreground: "hsl(var(--foreground))",
-        surface: "hsl(var(--surface))",
-        "surface-glow": "hsl(var(--surface-glow))",
+        surface: {
+          DEFAULT: "hsl(var(--surface))",
+          hover: "hsl(var(--surface-hover))",
+        },
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+          hover: "hsl(var(--primary-hover))",
         },
-        "neon-blue": "hsl(var(--neon-blue))",
-        "neon-purple": "hsl(var(--neon-purple))",
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
@@ -47,6 +53,10 @@ export default {
         accent: {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
+        },
+        cyan: {
+          DEFAULT: "hsl(var(--cyan))",
+          foreground: "hsl(var(--cyan-foreground))",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",
@@ -71,15 +81,16 @@ export default {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
-        "2xl": "1rem",
+        xl: "1rem",
+        "2xl": "1.25rem",
         "3xl": "1.5rem",
         "4xl": "2rem",
+        full: "50px",
       },
       fontSize: {
-        "display-xl": ["4rem", { lineHeight: "1.1", fontWeight: "700" }],
-        "display-lg": ["3rem", { lineHeight: "1.15", fontWeight: "700" }],
-        "display-md": ["2rem", { lineHeight: "1.2", fontWeight: "600" }],
-        "display-sm": ["1.5rem", { lineHeight: "1.3", fontWeight: "600" }],
+        "display-lg": ["3.5rem", { lineHeight: "1.1", letterSpacing: "-0.02em" }],
+        "display-md": ["2.5rem", { lineHeight: "1.2", letterSpacing: "-0.01em" }],
+        "display-sm": ["2rem", { lineHeight: "1.3" }],
       },
       keyframes: {
         "accordion-down": {
@@ -91,58 +102,40 @@ export default {
           to: { height: "0" },
         },
         "fade-in": {
-          from: { opacity: "0", transform: "translateY(20px)" },
-          to: { opacity: "1", transform: "translateY(0)" },
-        },
-        "fade-in-left": {
-          from: { opacity: "0", transform: "translateX(-30px)" },
-          to: { opacity: "1", transform: "translateX(0)" },
+          "0%": { opacity: "0", transform: "translateY(20px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
         },
         "fade-in-right": {
-          from: { opacity: "0", transform: "translateX(30px)" },
-          to: { opacity: "1", transform: "translateX(0)" },
+          "0%": { opacity: "0", transform: "translateX(20px)" },
+          "100%": { opacity: "1", transform: "translateX(0)" },
         },
         "scale-in": {
-          from: { opacity: "0", transform: "scale(0.95)" },
-          to: { opacity: "1", transform: "scale(1)" },
-        },
-        "slide-up": {
-          from: { opacity: "0", transform: "translateY(40px)" },
-          to: { opacity: "1", transform: "translateY(0)" },
-        },
-        "glow-pulse": {
-          "0%, 100%": { 
-            boxShadow: "0 0 20px hsl(152 100% 50% / 0.4), 0 0 40px hsl(152 100% 50% / 0.2)" 
-          },
-          "50%": { 
-            boxShadow: "0 0 30px hsl(152 100% 50% / 0.6), 0 0 60px hsl(152 100% 50% / 0.3)" 
-          },
+          "0%": { opacity: "0", transform: "scale(0.95)" },
+          "100%": { opacity: "1", transform: "scale(1)" },
         },
         float: {
-          "0%, 100%": { transform: "translateY(0px)" },
-          "50%": { transform: "translateY(-15px)" },
+          "0%, 100%": { transform: "translate(0, 0) scale(1)" },
+          "50%": { transform: "translate(-30px, -30px) scale(1.1)" },
         },
-        "line-draw": {
-          from: { width: "0%" },
-          to: { width: "100%" },
+        phoneFloat: {
+          "0%, 100%": { transform: "translateY(0) rotateY(-5deg)" },
+          "50%": { transform: "translateY(-20px) rotateY(5deg)" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-in": "fade-in 0.6s ease-out forwards",
-        "fade-in-left": "fade-in-left 0.6s ease-out forwards",
-        "fade-in-right": "fade-in-right 0.6s ease-out forwards",
-        "scale-in": "scale-in 0.5s ease-out forwards",
-        "slide-up": "slide-up 0.7s ease-out forwards",
-        "glow-pulse": "glow-pulse 2s ease-in-out infinite",
-        float: "float 6s ease-in-out infinite",
-        "line-draw": "line-draw 1s ease-out forwards",
+        "fade-in-right": "fade-in-right 0.6s ease-out",
+        "scale-in": "scale-in 0.4s ease-out",
+        float: "float 8s ease-in-out infinite",
+        "phone-float": "phoneFloat 6s ease-in-out infinite",
       },
       boxShadow: {
-        "neon": "0 0 20px hsl(152 100% 50% / 0.4), 0 0 40px hsl(152 100% 50% / 0.2)",
-        "neon-lg": "0 0 30px hsl(152 100% 50% / 0.5), 0 0 60px hsl(152 100% 50% / 0.25)",
-        "card-hover": "0 20px 60px hsl(152 100% 50% / 0.15)",
+        soft: "0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05)",
+        "soft-lg": "0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04)",
+        "primary-glow": "0 10px 30px -5px rgba(37, 99, 235, 0.4)",
+        "accent-glow": "0 10px 30px -5px rgba(16, 185, 129, 0.4)",
       },
     },
   },

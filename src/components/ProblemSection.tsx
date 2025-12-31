@@ -1,91 +1,57 @@
-import { useEffect, useRef, useState } from "react";
+import { MagnifyingGlass, DeviceMobile, CurrencyCircleDollar } from "@phosphor-icons/react";
 
-interface PainCard {
-  icon: string;
-  title: string;
-  description: string;
-}
-
-const painCards: PainCard[] = [
+const problems = [
   {
-    icon: "😤",
-    title: "Нет партнеров",
-    description:
-      "Хочешь сыграть сегодня, но друзья заняты. Пишешь в чаты Telegram — никто не отвечает. Снова сидишь дома.",
+    icon: MagnifyingGlass,
+    title: "Поиск партнеров",
+    description: "Тратите часы в Telegram-чатах, пытаясь найти игрока нужного уровня",
   },
   {
-    icon: "🤷‍♂️",
-    title: "Где корты?",
-    description:
-      "Каждый клуб — отдельный сайт. Приходится звонить в 5 мест, чтобы найти свободное время.",
+    icon: DeviceMobile,
+    title: "Разные приложения",
+    description: "У каждого клуба своя система бронирования или вообще только телефон",
   },
   {
-    icon: "🚪",
-    title: "Закрытые комьюнити",
-    description:
-      "Переехал или только начал играть? Каждый клуб — своя тусовка. Сложно влиться.",
+    icon: CurrencyCircleDollar,
+    title: "Дорого играть",
+    description: "Приходится оплачивать весь корт, когда играете вдвоем",
   },
 ];
 
 const ProblemSection = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.2 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <section
-      ref={sectionRef}
-      className="py-24 md:py-32 bg-background-secondary relative"
-    >
-      {/* Subtle Grain */}
-      <div className="absolute inset-0 noise-overlay" />
-
-      <div className="container mx-auto relative z-10">
+    <section className="py-20 lg:py-28 bg-background-secondary">
+      <div className="container mx-auto px-4">
         {/* Section Title */}
-        <h2
-          className={`text-display-lg md:text-display-xl text-center mb-16 md:mb-20 transition-all duration-700 ${
-            isVisible
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 translate-y-8"
-          }`}
-        >
-          Знакомо?
+        <h2 className="font-display font-extrabold text-3xl md:text-4xl lg:text-display-md text-foreground text-center mb-12 lg:mb-16">
+          Знакомые проблемы?
         </h2>
 
-        {/* Pain Cards Grid */}
-        <div className="grid md:grid-cols-3 gap-6 md:gap-8">
-          {painCards.map((card, index) => (
+        {/* Cards Grid */}
+        <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+          {problems.map((problem, index) => (
             <div
-              key={card.title}
-              className={`group p-8 md:p-10 rounded-3xl bg-card border border-border/50 hover:border-primary/50 transition-all duration-500 hover-lift ${
-                isVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-8"
-              }`}
-              style={{ transitionDelay: `${(index + 1) * 100}ms` }}
+              key={index}
+              className="group card-soft p-8 bg-surface hover:bg-surface-hover"
+              style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="text-6xl md:text-7xl mb-6">{card.icon}</div>
-              <h3 className="text-display-sm mb-4 text-foreground">
-                {card.title}
+              {/* Icon */}
+              <div className="mb-6">
+                <problem.icon
+                  size={56}
+                  weight="duotone"
+                  className="text-primary icon-hover"
+                />
+              </div>
+
+              {/* Title */}
+              <h3 className="font-display font-bold text-xl mb-3 text-foreground">
+                {problem.title}
               </h3>
+
+              {/* Description */}
               <p className="text-muted-foreground leading-relaxed">
-                {card.description}
+                {problem.description}
               </p>
             </div>
           ))}
