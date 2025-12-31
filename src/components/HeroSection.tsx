@@ -1,126 +1,106 @@
-import { ChevronDown } from "lucide-react";
-import mockupHome from "@/assets/mockup-home.jpeg";
-import mockupClub from "@/assets/mockup-club.jpeg";
-import mockupMatch from "@/assets/mockup-match.jpeg";
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { TennisBall, ArrowRight } from "@phosphor-icons/react";
+import screenHome from "@/assets/screen-home.jpeg";
+import screenClub from "@/assets/screen-club.jpeg";
+import screenBooking from "@/assets/screen-booking.jpeg";
+
+const slides = [screenHome, screenClub, screenBooking];
 
 const HeroSection = () => {
-  return (
-    <section className="relative min-h-screen flex items-center pt-20 overflow-hidden gradient-radial noise-overlay">
-      {/* Grid Pattern */}
-      <div className="absolute inset-0 grid-pattern opacity-30" />
-      
-      {/* Gradient Orbs */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-neon-blue/10 rounded-full blur-[100px] pointer-events-none" />
+  const [currentSlide, setCurrentSlide] = useState(0);
 
-      <div className="container mx-auto relative z-10">
-        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center min-h-[calc(100vh-5rem)]">
-          {/* Left Column - Content */}
-          <div className="lg:col-span-7 space-y-8">
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const scrollToWaitlist = () => {
+    const element = document.getElementById("waitlist");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  return (
+    <section className="min-h-screen pt-20 relative overflow-hidden bg-gradient-to-b from-background to-[#E8EAF6]">
+      {/* Decorative gradient circle */}
+      <div className="absolute top-20 right-0 w-[600px] h-[600px] bg-gradient-to-br from-primary/10 to-accent/10 rounded-full blur-3xl animate-float opacity-60" />
+      
+      <div className="container mx-auto px-4 py-12 lg:py-20">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Left Content */}
+          <div className="order-2 lg:order-1 text-center lg:text-left">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border-2 border-primary/50 bg-primary/10 neon-border animate-fade-in">
-              <span className="text-xl">🔥</span>
-              <span className="font-medium text-sm text-foreground">
-                Первые 100 человек получают скидку 30%
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full mb-6 animate-fade-in">
+              <TennisBall size={20} weight="duotone" className="text-primary" />
+              <span className="text-sm font-semibold text-primary">
+                Запуск в марте 2025
               </span>
             </div>
 
             {/* Headline */}
-            <h1 className="space-y-2">
-              <span className="block text-display-xl md:text-[4.5rem] lg:text-[5rem] text-foreground animate-fade-in" style={{ animationDelay: "0.1s" }}>
-                Найди игроков.
-              </span>
-              <span className="block text-display-xl md:text-[4.5rem] lg:text-[5rem] text-foreground animate-fade-in" style={{ animationDelay: "0.2s" }}>
-                Забронируй корт.
-              </span>
-              <span className="block text-display-xl md:text-[4.5rem] lg:text-[5rem] text-primary neon-text animate-fade-in" style={{ animationDelay: "0.3s" }}>
-                Сыграй сегодня.
-              </span>
+            <h1 className="font-display font-extrabold text-4xl md:text-5xl lg:text-display-lg text-foreground mb-6 animate-fade-in" style={{ animationDelay: "0.1s" }}>
+              Не можешь найти{" "}
+              <span className="text-primary">партнера</span>{" "}
+              для игры?
             </h1>
 
-            {/* Subheadline */}
-            <p className="text-lg md:text-xl text-muted-foreground max-w-lg leading-relaxed animate-fade-in" style={{ animationDelay: "0.4s" }}>
-              Экосистема для игроков в падел и теннис.
-              <br />
-              Все корты города на одной платформе.
+            {/* Subtext */}
+            <p className="text-lg text-muted-foreground max-w-xl mx-auto lg:mx-0 mb-8 animate-fade-in" style={{ animationDelay: "0.2s" }}>
+              Courtoo объединяет игроков в падел и теннис, упрощает бронирование кортов и помогает экономить на аренде.
             </p>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 animate-fade-in" style={{ animationDelay: "0.5s" }}>
-              <a
-                href="#waitlist"
-                className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary text-primary-foreground font-display font-semibold rounded-full hover:scale-105 transition-all duration-300 pulse-glow"
+            {/* CTA */}
+            <div className="animate-fade-in" style={{ animationDelay: "0.3s" }}>
+              <Button
+                onClick={scrollToWaitlist}
+                className="bg-primary hover:bg-primary-hover text-primary-foreground rounded-full px-8 py-6 text-lg font-semibold transition-all duration-300 hover:-translate-y-1 hover:shadow-primary-glow group"
               >
-                Записаться в лист ожидания
-                <span className="group-hover:translate-x-1 transition-transform">→</span>
-              </a>
-              <a
-                href="#how-it-works"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-border text-foreground font-display font-semibold rounded-full hover:border-primary hover:text-primary transition-all duration-300"
-              >
-                Как это работает
-                <ChevronDown size={18} />
-              </a>
-            </div>
-
-            {/* Trust Indicators */}
-            <div className="flex flex-wrap gap-6 text-sm text-muted-foreground animate-fade-in" style={{ animationDelay: "0.6s" }}>
-              <span className="flex items-center gap-2">
-                <span className="text-primary">✓</span> Бесплатно навсегда
-              </span>
-              <span className="flex items-center gap-2">
-                <span className="text-primary">✓</span> Работает в браузере
-              </span>
+                Получить ранний доступ
+                <ArrowRight size={20} weight="bold" className="ml-2 group-hover:translate-x-1 transition-transform" />
+              </Button>
             </div>
           </div>
 
-          {/* Right Column - Phone Mockups */}
-          <div className="lg:col-span-5 relative h-[500px] md:h-[600px] lg:h-[700px] hidden lg:block">
-            {/* Main Phone */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] z-30 float">
-              <div className="phone-mockup phone-mockup-glow">
-                <img
-                  src={mockupHome}
-                  alt="Courtoo главный экран"
-                  className="w-full h-auto"
-                  loading="eager"
-                />
+          {/* Right Content - Phone Mockup */}
+          <div className="order-1 lg:order-2 flex justify-center lg:justify-end">
+            <div className="relative animate-phone-float" style={{ perspective: "1000px" }}>
+              {/* Phone Frame */}
+              <div className="phone-mockup w-[280px] md:w-[320px] lg:w-[340px]">
+                <div className="phone-screen aspect-[9/19.5] relative">
+                  {slides.map((slide, index) => (
+                    <img
+                      key={index}
+                      src={slide}
+                      alt={`Экран приложения ${index + 1}`}
+                      className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+                        index === currentSlide ? "opacity-100" : "opacity-0"
+                      }`}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              {/* Slide Indicators */}
+              <div className="flex justify-center gap-2 mt-6">
+                {slides.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentSlide(index)}
+                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                      index === currentSlide
+                        ? "bg-primary w-6"
+                        : "bg-border hover:bg-muted-foreground"
+                    }`}
+                    aria-label={`Slide ${index + 1}`}
+                  />
+                ))}
               </div>
             </div>
-
-            {/* Secondary Phone - Back Left */}
-            <div className="absolute top-[5%] left-[0%] w-[200px] z-10 float-delayed opacity-70">
-              <div className="phone-mockup rotate-[-8deg]">
-                <img
-                  src={mockupClub}
-                  alt="Courtoo клуб"
-                  className="w-full h-auto blur-[1px]"
-                  loading="lazy"
-                />
-              </div>
-            </div>
-
-            {/* Tertiary Phone - Back Right */}
-            <div className="absolute bottom-[5%] right-[0%] w-[200px] z-10 float-slow opacity-70">
-              <div className="phone-mockup rotate-[8deg]">
-                <img
-                  src={mockupMatch}
-                  alt="Courtoo матч"
-                  className="w-full h-auto blur-[1px]"
-                  loading="lazy"
-                />
-              </div>
-            </div>
-
-            {/* Glow Effects */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-primary/20 rounded-full blur-[100px] pointer-events-none" />
           </div>
-        </div>
-
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted-foreground bounce-slow">
-          <span className="text-sm">Листай вниз</span>
-          <ChevronDown size={20} />
         </div>
       </div>
     </section>
