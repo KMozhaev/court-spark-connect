@@ -1,26 +1,28 @@
 import { useEffect, useRef, useState } from "react";
+import { UserMinus, MapPinLine, DoorOpen } from "@phosphor-icons/react";
+import type { Icon } from "@phosphor-icons/react";
 
 interface PainCard {
-  icon: string;
+  Icon: Icon;
   title: string;
   description: string;
 }
 
 const painCards: PainCard[] = [
   {
-    icon: "😤",
+    Icon: UserMinus,
     title: "Нет партнеров",
     description:
       "Хочешь сыграть сегодня, но друзья заняты. Пишешь в чаты Telegram — никто не отвечает. Снова сидишь дома.",
   },
   {
-    icon: "🤷‍♂️",
+    Icon: MapPinLine,
     title: "Где корты?",
     description:
       "Каждый клуб — отдельный сайт. Приходится звонить в 5 мест, чтобы найти свободное время.",
   },
   {
-    icon: "🚪",
+    Icon: DoorOpen,
     title: "Закрытые комьюнити",
     description:
       "Переехал или только начал играть? Каждый клуб — своя тусовка. Сложно влиться.",
@@ -80,7 +82,11 @@ const ProblemSection = () => {
               }`}
               style={{ transitionDelay: `${(index + 1) * 100}ms` }}
             >
-              <div className="text-6xl md:text-7xl mb-6">{card.icon}</div>
+              <card.Icon 
+                size={64} 
+                weight="duotone" 
+                className="text-primary mb-6 group-hover:scale-110 transition-transform duration-300" 
+              />
               <h3 className="text-display-sm mb-4 text-foreground">
                 {card.title}
               </h3>

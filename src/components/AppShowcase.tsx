@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { CheckCircle } from "@phosphor-icons/react";
 import mockupHome from "@/assets/mockup-home.jpeg";
 import mockupClub from "@/assets/mockup-club.jpeg";
 import mockupConfirm from "@/assets/mockup-confirm.jpeg";
@@ -120,7 +121,7 @@ const AppShowcase = () => {
                       key={feature}
                       className="flex items-center gap-3 text-foreground"
                     >
-                      <span className="text-primary text-lg">✓</span>
+                      <CheckCircle size={20} weight="fill" className="text-primary flex-shrink-0" />
                       {feature}
                     </li>
                   ))}
