@@ -7,15 +7,15 @@ export default {
   theme: {
     container: {
       center: true,
-      padding: "1.5rem",
+      padding: "2rem",
       screens: {
         "2xl": "1400px",
       },
     },
     extend: {
       fontFamily: {
-        display: ["Unbounded", "sans-serif"],
-        body: ["Work Sans", "sans-serif"],
+        display: ["Commissioner", "sans-serif"],
+        body: ["Manrope", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -25,13 +25,16 @@ export default {
         "background-secondary": "hsl(var(--background-secondary))",
         foreground: "hsl(var(--foreground))",
         surface: "hsl(var(--surface))",
-        "surface-glow": "hsl(var(--surface-glow))",
+        "surface-hover": "hsl(var(--surface-hover))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
+          dark: "hsl(var(--primary-dark))",
           foreground: "hsl(var(--primary-foreground))",
         },
-        "neon-blue": "hsl(var(--neon-blue))",
-        "neon-purple": "hsl(var(--neon-purple))",
+        "accent-green": {
+          DEFAULT: "hsl(var(--accent-green))",
+          foreground: "hsl(var(--accent-green-foreground))",
+        },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
@@ -76,10 +79,10 @@ export default {
         "4xl": "2rem",
       },
       fontSize: {
-        "display-xl": ["4rem", { lineHeight: "1.1", fontWeight: "700" }],
-        "display-lg": ["3rem", { lineHeight: "1.15", fontWeight: "700" }],
-        "display-md": ["2rem", { lineHeight: "1.2", fontWeight: "600" }],
-        "display-sm": ["1.5rem", { lineHeight: "1.3", fontWeight: "600" }],
+        "display-xl": ["clamp(2rem, 5vw, 3.5rem)", { lineHeight: "1.2", fontWeight: "800" }],
+        "display-lg": ["2.5rem", { lineHeight: "1.2", fontWeight: "800" }],
+        "display-md": ["1.5rem", { lineHeight: "1.3", fontWeight: "700" }],
+        "display-sm": ["1.25rem", { lineHeight: "1.4", fontWeight: "700" }],
       },
       keyframes: {
         "accordion-down": {
@@ -110,14 +113,6 @@ export default {
           from: { opacity: "0", transform: "translateY(40px)" },
           to: { opacity: "1", transform: "translateY(0)" },
         },
-        "glow-pulse": {
-          "0%, 100%": { 
-            boxShadow: "0 0 20px hsl(152 100% 50% / 0.4), 0 0 40px hsl(152 100% 50% / 0.2)" 
-          },
-          "50%": { 
-            boxShadow: "0 0 30px hsl(152 100% 50% / 0.6), 0 0 60px hsl(152 100% 50% / 0.3)" 
-          },
-        },
         float: {
           "0%, 100%": { transform: "translateY(0px)" },
           "50%": { transform: "translateY(-15px)" },
@@ -135,14 +130,14 @@ export default {
         "fade-in-right": "fade-in-right 0.6s ease-out forwards",
         "scale-in": "scale-in 0.5s ease-out forwards",
         "slide-up": "slide-up 0.7s ease-out forwards",
-        "glow-pulse": "glow-pulse 2s ease-in-out infinite",
         float: "float 6s ease-in-out infinite",
         "line-draw": "line-draw 1s ease-out forwards",
       },
       boxShadow: {
-        "neon": "0 0 20px hsl(152 100% 50% / 0.4), 0 0 40px hsl(152 100% 50% / 0.2)",
-        "neon-lg": "0 0 30px hsl(152 100% 50% / 0.5), 0 0 60px hsl(152 100% 50% / 0.25)",
-        "card-hover": "0 20px 60px hsl(152 100% 50% / 0.15)",
+        "soft": "0 4px 20px rgba(0, 0, 0, 0.08)",
+        "card": "0 10px 40px rgba(0, 0, 0, 0.1)",
+        "card-hover": "0 20px 60px rgba(0, 0, 0, 0.15)",
+        "button": "0 8px 30px rgba(37, 99, 235, 0.4)",
       },
     },
   },

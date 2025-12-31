@@ -1,29 +1,30 @@
 import { useEffect, useRef, useState } from "react";
+import { MagnifyingGlass, DeviceMobile, CurrencyCircleDollar } from "@phosphor-icons/react";
 
 interface PainCard {
-  icon: string;
+  icon: React.ReactNode;
   title: string;
   description: string;
 }
 
 const painCards: PainCard[] = [
   {
-    icon: "😤",
-    title: "Нет партнеров",
+    icon: <MagnifyingGlass size={48} weight="duotone" />,
+    title: "Поиск партнеров",
     description:
-      "Хочешь сыграть сегодня, но друзья заняты. Пишешь в чаты Telegram — никто не отвечает. Снова сидишь дома.",
+      "Хочешь сыграть сегодня, но друзья заняты. Пишешь в чаты — никто не отвечает. Снова сидишь дома.",
   },
   {
-    icon: "🤷‍♂️",
-    title: "Где корты?",
+    icon: <DeviceMobile size={48} weight="duotone" />,
+    title: "Разные приложения",
     description:
       "Каждый клуб — отдельный сайт. Приходится звонить в 5 мест, чтобы найти свободное время.",
   },
   {
-    icon: "🚪",
-    title: "Закрытые комьюнити",
+    icon: <CurrencyCircleDollar size={48} weight="duotone" />,
+    title: "Дорого играть",
     description:
-      "Переехал или только начал играть? Каждый клуб — своя тусовка. Сложно влиться.",
+      "Платишь за весь корт один, когда партнёры отменяют. Сложно разделить стоимость.",
   },
 ];
 
@@ -51,21 +52,18 @@ const ProblemSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="py-24 md:py-32 bg-background-secondary relative"
+      className="py-24 md:py-32 bg-background-secondary"
     >
-      {/* Subtle Grain */}
-      <div className="absolute inset-0 noise-overlay" />
-
-      <div className="container mx-auto relative z-10">
+      <div className="container mx-auto max-w-5xl">
         {/* Section Title */}
         <h2
-          className={`text-display-lg md:text-display-xl text-center mb-16 md:mb-20 transition-all duration-700 ${
+          className={`text-display-lg text-center mb-16 md:mb-20 text-foreground transition-all duration-700 ${
             isVisible
               ? "opacity-100 translate-y-0"
               : "opacity-0 translate-y-8"
           }`}
         >
-          Знакомо?
+          Знакомые проблемы?
         </h2>
 
         {/* Pain Cards Grid */}
@@ -73,18 +71,18 @@ const ProblemSection = () => {
           {painCards.map((card, index) => (
             <div
               key={card.title}
-              className={`group p-8 md:p-10 rounded-3xl bg-card border border-border/50 hover:border-primary/50 transition-all duration-500 hover-lift ${
+              className={`group p-8 rounded-3xl bg-surface hover:bg-surface-hover transition-all duration-500 card-hover ${
                 isVisible
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-8"
               }`}
               style={{ transitionDelay: `${(index + 1) * 100}ms` }}
             >
-              <div className="text-6xl md:text-7xl mb-6">{card.icon}</div>
+              <div className="text-primary mb-6">{card.icon}</div>
               <h3 className="text-display-sm mb-4 text-foreground">
                 {card.title}
               </h3>
-              <p className="text-muted-foreground leading-relaxed">
+              <p className="text-muted-foreground leading-relaxed text-base">
                 {card.description}
               </p>
             </div>

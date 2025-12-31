@@ -2,9 +2,7 @@ import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import ProblemSection from "@/components/ProblemSection";
 import AppShowcase from "@/components/AppShowcase";
-import FeaturesSection from "@/components/FeaturesSection";
 import HowItWorks from "@/components/HowItWorks";
-import MarketStats from "@/components/MarketStats";
 import WaitlistCTA from "@/components/WaitlistCTA";
 import Footer from "@/components/Footer";
 
@@ -16,9 +14,7 @@ const Index = () => {
         <HeroSection />
         <ProblemSection />
         <AppShowcase />
-        <FeaturesSection />
         <HowItWorks />
-        <MarketStats />
         <WaitlistCTA />
       </main>
       <Footer />

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { List, X } from "@phosphor-icons/react";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -23,7 +23,7 @@ const Header = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "glass border-b border-border/50 shadow-lg"
+          ? "glass border-b border-border shadow-soft"
           : "bg-transparent"
       }`}
     >
@@ -32,7 +32,7 @@ const Header = () => {
           {/* Logo */}
           <a
             href="/"
-            className="font-display text-2xl font-bold text-foreground hover:text-primary transition-colors"
+            className="font-display text-2xl font-extrabold text-foreground hover:text-primary transition-colors"
           >
             Courtoo
           </a>
@@ -45,7 +45,7 @@ const Header = () => {
                 href={link.href}
                 target={link.external ? "_blank" : undefined}
                 rel={link.external ? "noopener noreferrer" : undefined}
-                className="text-muted-foreground hover:text-foreground transition-colors relative group font-medium"
+                className="text-muted-foreground hover:text-foreground transition-colors relative group font-medium text-base"
               >
                 {link.label}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
@@ -57,9 +57,9 @@ const Header = () => {
           <div className="hidden md:block">
             <a
               href="#waitlist"
-              className="inline-flex items-center justify-center px-6 py-3 bg-primary text-primary-foreground font-display font-semibold text-sm rounded-full hover:scale-105 transition-all duration-300 neon-glow hover:neon-glow-intense"
+              className="inline-flex items-center justify-center px-6 py-3 bg-primary text-primary-foreground font-display font-semibold text-base rounded-full btn-hover"
             >
-              Войти в лист ожидания
+              Записаться в лист ожидания
             </a>
           </div>
 
@@ -69,14 +69,14 @@ const Header = () => {
             className="md:hidden p-2 text-foreground"
             aria-label="Toggle menu"
           >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMobileMenuOpen ? <X size={24} weight="bold" /> : <List size={24} weight="bold" />}
           </button>
         </div>
       </div>
 
       {/* Mobile Menu */}
       <div
-        className={`md:hidden absolute top-full left-0 right-0 glass border-b border-border/50 transition-all duration-300 ${
+        className={`md:hidden absolute top-full left-0 right-0 glass border-b border-border transition-all duration-300 ${
           isMobileMenuOpen
             ? "opacity-100 visible translate-y-0"
             : "opacity-0 invisible -translate-y-4"
@@ -89,7 +89,7 @@ const Header = () => {
               href={link.href}
               target={link.external ? "_blank" : undefined}
               rel={link.external ? "noopener noreferrer" : undefined}
-              className="text-muted-foreground hover:text-foreground transition-colors py-2 font-medium"
+              className="text-muted-foreground hover:text-foreground transition-colors py-2 font-medium text-base"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               {link.label}
@@ -97,10 +97,10 @@ const Header = () => {
           ))}
           <a
             href="#waitlist"
-            className="inline-flex items-center justify-center px-6 py-3 bg-primary text-primary-foreground font-display font-semibold text-sm rounded-full mt-4"
+            className="inline-flex items-center justify-center px-6 py-3 bg-primary text-primary-foreground font-display font-semibold text-base rounded-full mt-4"
             onClick={() => setIsMobileMenuOpen(false)}
           >
-            Войти в лист ожидания
+            Записаться в лист ожидания
           </a>
         </nav>
       </div>
