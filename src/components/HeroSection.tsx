@@ -1,95 +1,106 @@
 import { useState, useEffect } from "react";
-import { CaretDown, Rocket } from "@phosphor-icons/react";
-import screen1 from "@/assets/screen-1.jpeg";
-import screen2 from "@/assets/screen-2.jpeg";
-import screen3 from "@/assets/screen-3.jpeg";
+import { Button } from "@/components/ui/button";
+import { TennisBall, ArrowRight } from "@phosphor-icons/react";
+import screenHome from "@/assets/screen-home.jpeg";
+import screenClub from "@/assets/screen-club.jpeg";
+import screenBooking from "@/assets/screen-booking.jpeg";
 
-const screenshots = [screen1, screen2, screen3];
+const slides = [screenHome, screenClub, screenBooking];
 
 const HeroSection = () => {
-  const [currentScreen, setCurrentScreen] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentScreen((prev) => (prev + 1) % screenshots.length);
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 4000);
     return () => clearInterval(interval);
   }, []);
 
-  return (
-    <section className="relative min-h-screen flex items-center pt-20 overflow-hidden gradient-hero">
-      {/* Decorative Circle */}
-      <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] rounded-full bg-primary/10 blur-[100px] pointer-events-none hero-decoration" />
+  const scrollToWaitlist = () => {
+    const element = document.getElementById("waitlist");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
-      <div className="container mx-auto relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[calc(100vh-5rem)]">
-          {/* Left Column - Content */}
-          <div className="space-y-8">
+  return (
+    <section className="min-h-screen pt-20 relative overflow-hidden bg-gradient-to-b from-background to-[#E8EAF6]">
+      {/* Decorative gradient circle */}
+      <div className="absolute top-20 right-0 w-[600px] h-[600px] bg-gradient-to-br from-primary/10 to-accent/10 rounded-full blur-3xl animate-float opacity-60" />
+      
+      <div className="container mx-auto px-4 py-12 lg:py-20">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Left Content */}
+          <div className="order-2 lg:order-1 text-center lg:text-left">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent-green/10 text-accent-green animate-fade-in">
-              <Rocket size={18} weight="duotone" />
-              <span className="font-medium text-sm">Запуск в марте 2025</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full mb-6 animate-fade-in">
+              <TennisBall size={20} weight="duotone" className="text-primary" />
+              <span className="text-sm font-semibold text-primary">
+                Запуск в марте 2025
+              </span>
             </div>
 
             {/* Headline */}
-            <h1 
-              className="text-display-xl text-foreground animate-fade-in"
-              style={{ animationDelay: "0.1s" }}
-            >
-              Не можешь найти партнера для игры?
+            <h1 className="font-display font-extrabold text-4xl md:text-5xl lg:text-display-lg text-foreground mb-6 animate-fade-in" style={{ animationDelay: "0.1s" }}>
+              Не можешь найти{" "}
+              <span className="text-primary">партнера</span>{" "}
+              для игры?
             </h1>
 
-            {/* Subheadline */}
-            <p 
-              className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-lg animate-fade-in"
-              style={{ animationDelay: "0.2s" }}
-            >
-              Courtoo объединяет игроков в падел и теннис. Находи партнёров, 
-              бронируй корты и играй больше — всё в одном приложении.
+            {/* Subtext */}
+            <p className="text-lg text-muted-foreground max-w-xl mx-auto lg:mx-0 mb-8 animate-fade-in" style={{ animationDelay: "0.2s" }}>
+              Courtoo объединяет игроков в падел и теннис, упрощает бронирование кортов и помогает экономить на аренде.
             </p>
 
-            {/* CTA Button */}
+            {/* CTA */}
             <div className="animate-fade-in" style={{ animationDelay: "0.3s" }}>
-              <a
-                href="#waitlist"
-                className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary text-primary-foreground font-display font-semibold text-lg rounded-full btn-hover"
+              <Button
+                onClick={scrollToWaitlist}
+                className="bg-primary hover:bg-primary-hover text-primary-foreground rounded-full px-8 py-6 text-lg font-semibold transition-all duration-300 hover:-translate-y-1 hover:shadow-primary-glow group"
               >
                 Получить ранний доступ
-                <span className="group-hover:translate-x-1 transition-transform">→</span>
-              </a>
+                <ArrowRight size={20} weight="bold" className="ml-2 group-hover:translate-x-1 transition-transform" />
+              </Button>
             </div>
           </div>
 
-          {/* Right Column - Phone Mockup */}
-          <div className="relative flex justify-center lg:justify-end">
-            <div className="relative w-[280px] md:w-[320px] phone-float">
+          {/* Right Content - Phone Mockup */}
+          <div className="order-1 lg:order-2 flex justify-center lg:justify-end">
+            <div className="relative animate-phone-float" style={{ perspective: "1000px" }}>
               {/* Phone Frame */}
-              <div className="phone-frame">
-                {/* Notch */}
-                <div className="phone-notch" />
-                
-                {/* Screen */}
-                <div className="phone-screen relative aspect-[9/19]">
-                  {screenshots.map((screen, index) => (
+              <div className="phone-mockup w-[280px] md:w-[320px] lg:w-[340px]">
+                <div className="phone-screen aspect-[9/19.5] relative">
+                  {slides.map((slide, index) => (
                     <img
                       key={index}
-                      src={screen}
-                      alt={`Courtoo экран ${index + 1}`}
-                      className={`absolute inset-0 w-full h-full object-contain bg-white transition-opacity duration-500 ${
-                        currentScreen === index ? "opacity-100" : "opacity-0"
+                      src={slide}
+                      alt={`Экран приложения ${index + 1}`}
+                      className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+                        index === currentSlide ? "opacity-100" : "opacity-0"
                       }`}
                     />
                   ))}
                 </div>
               </div>
+
+              {/* Slide Indicators */}
+              <div className="flex justify-center gap-2 mt-6">
+                {slides.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentSlide(index)}
+                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                      index === currentSlide
+                        ? "bg-primary w-6"
+                        : "bg-border hover:bg-muted-foreground"
+                    }`}
+                    aria-label={`Slide ${index + 1}`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted-foreground animate-bounce">
-          <span className="text-sm font-medium">Листай вниз</span>
-          <CaretDown size={20} weight="bold" />
         </div>
       </div>
     </section>

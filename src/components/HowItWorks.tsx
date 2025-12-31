@@ -1,94 +1,55 @@
-import { useEffect, useRef, useState } from "react";
 import { NumberCircleOne, NumberCircleTwo, NumberCircleThree } from "@phosphor-icons/react";
 
-interface Step {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
-}
-
-const steps: Step[] = [
+const steps = [
   {
-    icon: <NumberCircleOne size={64} weight="duotone" />,
-    title: "Открой приложение",
-    description:
-      "Заходи с любого устройства — работает в браузере, не нужно ничего скачивать.",
+    icon: NumberCircleOne,
+    title: "Находишь игру",
+    description: "Смотришь открытые матчи или создаёшь свой, выбирая корт и время",
   },
   {
-    icon: <NumberCircleTwo size={64} weight="duotone" />,
-    title: "Найди игроков или корт",
-    description:
-      "Смотри открытые матчи, выбирай клуб на карте, проверяй свободное время.",
+    icon: NumberCircleTwo,
+    title: "Присоединяешься",
+    description: "Выбираешь матч по уровню и месту, бронируешь одним кликом",
   },
   {
-    icon: <NumberCircleThree size={64} weight="duotone" />,
-    title: "Бронируй и играй",
-    description:
-      "Подтверди бронь, получи напоминание, приезжай и наслаждайся игрой.",
+    icon: NumberCircleThree,
+    title: "Играешь и платишь",
+    description: "Приходишь на корт, играешь и платишь только свою часть",
   },
 ];
 
 const HowItWorks = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <section
-      id="how-it-works"
-      ref={sectionRef}
-      className="py-24 md:py-32 gradient-blue text-white"
-    >
-      <div className="container mx-auto">
+    <section className="py-20 lg:py-28 bg-primary" id="how-it-works">
+      <div className="container mx-auto px-4">
         {/* Section Title */}
-        <h2
-          className={`text-display-lg text-center mb-16 md:mb-20 transition-all duration-700 ${
-            isVisible
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 translate-y-8"
-          }`}
-        >
+        <h2 className="font-display font-extrabold text-3xl md:text-4xl lg:text-display-md text-primary-foreground text-center mb-12 lg:mb-16">
           Как это работает
         </h2>
 
         {/* Steps Grid */}
-        <div className="grid md:grid-cols-3 gap-12 md:gap-8">
+        <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
           {steps.map((step, index) => (
             <div
-              key={step.title}
-              className={`text-center transition-all duration-700 ${
-                isVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-12"
-              }`}
-              style={{ transitionDelay: `${(index + 1) * 150}ms` }}
+              key={index}
+              className="text-center group"
             >
               {/* Icon */}
-              <div className="flex justify-center mb-6 text-white/90">
-                {step.icon}
+              <div className="flex justify-center mb-6">
+                <step.icon
+                  size={80}
+                  weight="duotone"
+                  className="text-primary-foreground/80 icon-hover"
+                />
               </div>
 
               {/* Title */}
-              <h3 className="text-display-md mb-4">{step.title}</h3>
+              <h3 className="font-display font-bold text-xl mb-3 text-primary-foreground">
+                {step.title}
+              </h3>
 
               {/* Description */}
-              <p className="text-white/80 leading-relaxed text-base max-w-xs mx-auto">
+              <p className="text-primary-foreground/80 leading-relaxed max-w-xs mx-auto">
                 {step.description}
               </p>
             </div>
