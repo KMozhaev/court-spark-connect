@@ -90,9 +90,6 @@ export default {
         "b2b-danger": "hsl(var(--b2b-danger))",
         "b2b-border": "hsl(var(--b2b-border))",
         "b2b-border-hover": "hsl(var(--b2b-border-hover))",
-        // B2C Specific Colors
-        "b2c-neon": "hsl(var(--b2c-neon))",
-        "b2c-neon-hover": "hsl(var(--b2c-neon-hover))",
       },
       borderRadius: {
         lg: "var(--radius)",

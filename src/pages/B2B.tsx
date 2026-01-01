@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet";
-import Header from "@/components/Header";
+import B2BHeader from "@/components/b2b/B2BHeader";
 import B2BHero from "@/components/b2b/B2BHero";
 import B2BCurrentSolutions from "@/components/b2b/B2BCurrentSolutions";
 import B2BComingSoon from "@/components/b2b/B2BComingSoon";
@@ -26,7 +26,7 @@ const B2B = () => {
       </Helmet>
       
       <div className="min-h-screen bg-b2b-background">
-        <Header />
+        <B2BHeader />
         <main>
           <B2BHero />
           

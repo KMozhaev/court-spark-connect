@@ -22,9 +22,24 @@ const FeatureSection = ({
   return (
     <section className={`py-20 lg:py-28 ${bgLight ? "bg-b2b-background-secondary" : "bg-b2b-background"}`}>
       <div className="max-w-7xl mx-auto px-6">
-        <div className={`grid lg:grid-cols-2 gap-12 lg:gap-20 items-center`}>
-          {/* Content - Text side */}
-          <div className={`${reversed ? "lg:order-2" : "lg:order-1"} order-2 text-center lg:text-left`}>
+        <div className={`grid lg:grid-cols-2 gap-12 lg:gap-20 items-center ${reversed ? "lg:grid-flow-dense" : ""}`}>
+          {/* Phone Mockup - Always first on mobile */}
+          <div className={`flex justify-center ${reversed ? "lg:col-start-1" : "lg:col-start-2"} order-1`}>
+            <div className="phone-float" style={{ perspective: "1000px" }}>
+              <div className="phone-mockup w-[280px] md:w-[320px]">
+                <div className="phone-screen aspect-[9/19.5]">
+                  <img
+                    src={image}
+                    alt={imageAlt}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Content */}
+          <div className={`${reversed ? "lg:col-start-2" : "lg:col-start-1"} order-2 text-center lg:text-left`}>
             {/* Title */}
             <h2 className="font-display font-extrabold text-3xl md:text-4xl lg:text-5xl text-b2b-text-primary mb-4">
               {title}
@@ -51,21 +66,6 @@ const FeatureSection = ({
                 </li>
               ))}
             </ul>
-          </div>
-
-          {/* Phone Mockup - Image side */}
-          <div className={`flex justify-center ${reversed ? "lg:order-1" : "lg:order-2"} order-1`}>
-            <div className="phone-float" style={{ perspective: "1000px" }}>
-              <div className="phone-mockup w-[280px] md:w-[320px]">
-                <div className="phone-screen aspect-[9/19.5]">
-                  <img
-                    src={image}
-                    alt={imageAlt}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>

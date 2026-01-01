@@ -116,14 +116,7 @@ const WaitlistSection = () => {
                 {isLoading ? "Отправка..." : "Записаться в лист ожидания"}
               </Button>
               <p className="text-b2b-text-muted text-sm">
-                Нажимая кнопку, вы соглашаетесь с{" "}
-                <a href="#" className="underline hover:text-b2b-primary transition-colors">
-                  Политикой конфиденциальности
-                </a>{" "}
-                и{" "}
-                <a href="#" className="underline hover:text-b2b-primary transition-colors">
-                  Пользовательским соглашением
-                </a>
+                Мы не передаём ваши данные третьим лицам и не спамим
               </p>
             </form>
           )}

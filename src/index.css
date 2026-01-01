@@ -82,10 +82,6 @@
     --b2b-danger: 0 84% 60%;
     --b2b-border: 214 32% 91%;
     --b2b-border-hover: 214 32% 85%;
-
-    /* B2C Specific Variables */
-    --b2c-neon: 85 81% 44%;
-    --b2c-neon-hover: 85 81% 38%;
   }
 
   .dark {

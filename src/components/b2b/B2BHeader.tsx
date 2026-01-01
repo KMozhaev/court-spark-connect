@@ -3,11 +3,11 @@ import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { List, X } from "@phosphor-icons/react";
 
-const Header = () => {
+const B2BHeader = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
-  const isPlayers = location.pathname === "/players";
+  const isB2B = location.pathname === "/" || location.pathname === "/b2b";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,8 +17,8 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToWaitlist = () => {
-    const element = document.getElementById("waitlist");
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
@@ -36,16 +36,16 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link to="/players" className="font-display font-extrabold text-2xl text-b2b-text-primary">
+          <Link to="/" className="font-display font-extrabold text-2xl text-b2b-text-primary">
             Courtoo
           </Link>
 
-          {/* Toggle Switch - Same as B2B, centered */}
+          {/* Toggle Switch - More noticeable */}
           <div className="hidden md:flex items-center bg-slate-100 rounded-full p-1 border-2 border-slate-200">
             <Link
               to="/"
               className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
-                !isPlayers
+                isB2B
                   ? "bg-b2b-primary text-white shadow-md"
                   : "text-b2b-text-secondary hover:text-b2b-text-primary"
               }`}
@@ -55,7 +55,7 @@ const Header = () => {
             <Link
               to="/players"
               className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
-                isPlayers
+                !isB2B
                   ? "bg-b2b-primary text-white shadow-md"
                   : "text-b2b-text-secondary hover:text-b2b-text-primary"
               }`}
@@ -64,13 +64,35 @@ const Header = () => {
             </Link>
           </div>
 
-          {/* Desktop CTA */}
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center gap-8">
+            <button
+              onClick={() => scrollToSection("features")}
+              className="text-sm font-medium text-b2b-text-secondary hover:text-b2b-primary transition-colors"
+            >
+              Возможности
+            </button>
+            <button
+              onClick={() => scrollToSection("pricing")}
+              className="text-sm font-medium text-b2b-text-secondary hover:text-b2b-primary transition-colors"
+            >
+              Тарифы
+            </button>
+            <button
+              onClick={() => scrollToSection("contact")}
+              className="text-sm font-medium text-b2b-text-secondary hover:text-b2b-primary transition-colors"
+            >
+              Контакты
+            </button>
+          </nav>
+
+          {/* CTA */}
           <div className="hidden md:flex items-center gap-4">
             <Button
-              onClick={scrollToWaitlist}
+              onClick={() => scrollToSection("contact")}
               className="bg-b2b-primary hover:bg-b2b-primary-hover text-white rounded-lg px-6 py-2.5 font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
             >
-              Записаться в лист ожидания
+              Оставить заявку
             </Button>
           </div>
 
@@ -96,7 +118,7 @@ const Header = () => {
               <Link
                 to="/"
                 className={`flex-1 text-center px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
-                  !isPlayers
+                  isB2B
                     ? "bg-b2b-primary text-white shadow-md"
                     : "text-b2b-text-secondary"
                 }`}
@@ -106,7 +128,7 @@ const Header = () => {
               <Link
                 to="/players"
                 className={`flex-1 text-center px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
-                  isPlayers
+                  !isB2B
                     ? "bg-b2b-primary text-white shadow-md"
                     : "text-b2b-text-secondary"
                 }`}
@@ -115,11 +137,31 @@ const Header = () => {
               </Link>
             </div>
 
+            <nav className="flex flex-col gap-4 mb-6">
+              <button
+                onClick={() => scrollToSection("features")}
+                className="text-left text-b2b-text-secondary hover:text-b2b-primary transition-colors"
+              >
+                Возможности
+              </button>
+              <button
+                onClick={() => scrollToSection("pricing")}
+                className="text-left text-b2b-text-secondary hover:text-b2b-primary transition-colors"
+              >
+                Тарифы
+              </button>
+              <button
+                onClick={() => scrollToSection("contact")}
+                className="text-left text-b2b-text-secondary hover:text-b2b-primary transition-colors"
+              >
+                Контакты
+              </button>
+            </nav>
             <Button
-              onClick={scrollToWaitlist}
+              onClick={() => scrollToSection("contact")}
               className="w-full bg-b2b-primary hover:bg-b2b-primary-hover text-white rounded-lg py-3 font-semibold"
             >
-              Записаться в лист ожидания
+              Оставить заявку
             </Button>
           </div>
         )}
@@ -128,4 +170,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default B2BHeader;
