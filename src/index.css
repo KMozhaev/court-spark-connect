@@ -67,6 +67,21 @@
     --sidebar-accent-foreground: 222 47% 11%;
     --sidebar-border: 214 32% 91%;
     --sidebar-ring: 217 91% 53%;
+
+    /* B2B Specific Variables */
+    --b2b-background: 240 10% 97%;
+    --b2b-background-secondary: 0 0% 100%;
+    --b2b-surface: 240 10% 97%;
+    --b2b-surface-hover: 240 10% 94%;
+    --b2b-text-primary: 222 47% 11%;
+    --b2b-text-secondary: 215 16% 47%;
+    --b2b-text-muted: 215 14% 63%;
+    --b2b-primary: 217 91% 53%;
+    --b2b-primary-hover: 224 76% 48%;
+    --b2b-success: 160 84% 39%;
+    --b2b-danger: 0 84% 60%;
+    --b2b-border: 214 32% 91%;
+    --b2b-border-hover: 214 32% 85%;
   }
 
   .dark {
