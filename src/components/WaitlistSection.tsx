@@ -41,12 +41,12 @@ const WaitlistSection = () => {
   return (
     <section
       id="waitlist"
-      className="py-20 lg:py-28 bg-gradient-to-br from-slate-800 via-slate-900 to-slate-950 text-white"
+      className="py-20 lg:py-28 bg-section-dark text-white"
     >
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="container mx-auto px-4">
         <div className="max-w-2xl mx-auto text-center">
           {/* Title */}
-          <h2 className="font-display font-bold text-3xl md:text-4xl mb-4">
+          <h2 className="font-display font-extrabold text-3xl md:text-4xl lg:text-display-md mb-4">
             Запишись в лист ожидания
           </h2>
 
@@ -56,9 +56,9 @@ const WaitlistSection = () => {
           </p>
 
           {/* Promo Box */}
-          <div className="bg-b2b-primary/20 border border-b2b-primary/30 rounded-2xl p-6 mb-10">
+          <div className="bg-accent/20 border border-accent/30 rounded-2xl p-6 mb-10">
             <div className="flex items-start gap-4 text-left">
-              <Gift size={32} weight="duotone" className="text-b2b-primary flex-shrink-0" />
+              <Gift size={32} weight="duotone" className="text-accent flex-shrink-0" />
               <div>
                 <h3 className="font-display font-bold text-lg mb-1">
                   Бонус для ранних пользователей
@@ -72,8 +72,8 @@ const WaitlistSection = () => {
 
           {/* Form or Success Message */}
           {isSubmitted ? (
-            <div className="bg-b2b-success/20 border border-b2b-success/30 rounded-2xl p-8 animate-scale-in">
-              <CheckCircle size={48} weight="fill" className="text-b2b-success mx-auto mb-4" />
+            <div className="bg-accent/20 border border-accent/30 rounded-2xl p-8 animate-scale-in">
+              <CheckCircle size={48} weight="fill" className="text-accent mx-auto mb-4" />
               <h3 className="font-display font-bold text-xl mb-2">Спасибо!</h3>
               <p className="text-white/70">
                 Мы отправим вам приглашение в марте 2025
@@ -88,7 +88,7 @@ const WaitlistSection = () => {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="h-14 rounded-xl bg-white/10 border-white/20 text-white placeholder:text-white/50 backdrop-blur-sm focus:border-b2b-primary focus:ring-b2b-primary"
+                className="h-14 rounded-full bg-white/10 border-white/20 text-white placeholder:text-white/50 backdrop-blur-sm focus:border-accent focus:ring-accent"
               />
               <Input
                 type="email"
@@ -97,7 +97,7 @@ const WaitlistSection = () => {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="h-14 rounded-xl bg-white/10 border-white/20 text-white placeholder:text-white/50 backdrop-blur-sm focus:border-b2b-primary focus:ring-b2b-primary"
+                className="h-14 rounded-full bg-white/10 border-white/20 text-white placeholder:text-white/50 backdrop-blur-sm focus:border-accent focus:ring-accent"
               />
               <Input
                 type="tel"
@@ -106,12 +106,12 @@ const WaitlistSection = () => {
                 value={formData.phone}
                 onChange={handleChange}
                 required
-                className="h-14 rounded-xl bg-white/10 border-white/20 text-white placeholder:text-white/50 backdrop-blur-sm focus:border-b2b-primary focus:ring-b2b-primary"
+                className="h-14 rounded-full bg-white/10 border-white/20 text-white placeholder:text-white/50 backdrop-blur-sm focus:border-accent focus:ring-accent"
               />
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="w-full h-14 bg-b2b-primary hover:bg-b2b-primary-hover text-white rounded-xl font-semibold text-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
+                className="w-full h-14 bg-primary hover:bg-primary-hover text-primary-foreground rounded-full font-semibold text-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-primary-glow"
               >
                 {isLoading ? "Отправка..." : "Записаться в лист ожидания"}
               </Button>

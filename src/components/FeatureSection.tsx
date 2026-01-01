@@ -20,8 +20,8 @@ const FeatureSection = ({
   bgLight = false,
 }: FeatureSectionProps) => {
   return (
-    <section className={`py-20 lg:py-28 ${bgLight ? "bg-b2b-surface" : "bg-white"}`}>
-      <div className="max-w-7xl mx-auto px-6">
+    <section className={`py-20 lg:py-28 ${bgLight ? "bg-surface" : "bg-background-secondary"}`}>
+      <div className="container mx-auto px-4">
         <div className={`grid lg:grid-cols-2 gap-12 lg:gap-20 items-center ${reversed ? "lg:grid-flow-dense" : ""}`}>
           {/* Phone Mockup - Always first on mobile */}
           <div className={`flex justify-center ${reversed ? "lg:col-start-1" : "lg:col-start-2"} order-1`}>
@@ -41,12 +41,12 @@ const FeatureSection = ({
           {/* Content */}
           <div className={`${reversed ? "lg:col-start-2" : "lg:col-start-1"} order-2 text-center lg:text-left`}>
             {/* Title */}
-            <h2 className="font-display font-bold text-3xl md:text-4xl text-b2b-text-primary mb-4">
+            <h2 className="font-display font-extrabold text-3xl md:text-4xl lg:text-display-md text-foreground mb-4">
               {title}
             </h2>
 
             {/* Description */}
-            <p className="text-lg text-b2b-text-secondary mb-8 max-w-lg mx-auto lg:mx-0">
+            <p className="text-lg text-muted-foreground mb-8 max-w-lg mx-auto lg:mx-0">
               {description}
             </p>
 
@@ -60,9 +60,9 @@ const FeatureSection = ({
                   <CheckCircle
                     size={24}
                     weight="fill"
-                    className="text-b2b-success flex-shrink-0 mt-0.5"
+                    className="text-primary flex-shrink-0 mt-0.5"
                   />
-                  <span className="text-b2b-text-primary font-medium">{feature}</span>
+                  <span className="text-foreground font-medium">{feature}</span>
                 </li>
               ))}
             </ul>

@@ -20,10 +20,10 @@ const steps = [
 
 const HowItWorks = () => {
   return (
-    <section className="py-20 lg:py-28 bg-b2b-primary" id="how-it-works">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="py-20 lg:py-28 bg-primary" id="how-it-works">
+      <div className="container mx-auto px-4">
         {/* Section Title */}
-        <h2 className="font-display font-bold text-3xl md:text-4xl text-white text-center mb-12 lg:mb-16">
+        <h2 className="font-display font-extrabold text-3xl md:text-4xl lg:text-display-md text-primary-foreground text-center mb-12 lg:mb-16">
           Как это работает
         </h2>
 
@@ -39,17 +39,17 @@ const HowItWorks = () => {
                 <step.icon
                   size={80}
                   weight="duotone"
-                  className="text-white/80 icon-hover"
+                  className="text-primary-foreground/80 icon-hover"
                 />
               </div>
 
               {/* Title */}
-              <h3 className="font-display font-bold text-xl mb-3 text-white">
+              <h3 className="font-display font-bold text-xl mb-3 text-primary-foreground">
                 {step.title}
               </h3>
 
               {/* Description */}
-              <p className="text-white/80 leading-relaxed max-w-xs mx-auto">
+              <p className="text-primary-foreground/80 leading-relaxed max-w-xs mx-auto">
                 {step.description}
               </p>
             </div>
