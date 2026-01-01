@@ -39,10 +39,7 @@ const WaitlistSection = () => {
   };
 
   return (
-    <section
-      id="waitlist"
-      className="py-20 lg:py-28 bg-b2b-background"
-    >
+    <section id="waitlist" className="py-20 lg:py-28 bg-b2b-background">
       <div className="max-w-7xl mx-auto px-6">
         <div className="max-w-2xl mx-auto text-center">
           {/* Title */}
@@ -64,7 +61,7 @@ const WaitlistSection = () => {
                   Бонус для ранних пользователей
                 </h3>
                 <p className="text-b2b-text-secondary">
-                  Первые 500 человек получат бесплатный месяц Premium и скидку 20% на первый абонемент
+                  Первые 100 человек получат бесплатный месяц Premium и скидку 20% на первое бронирование
                 </p>
               </div>
             </div>
@@ -75,9 +72,7 @@ const WaitlistSection = () => {
             <div className="bg-b2b-success/10 border border-b2b-success/20 rounded-2xl p-8 animate-scale-in">
               <CheckCircle size={48} weight="fill" className="text-b2b-success mx-auto mb-4" />
               <h3 className="font-display font-bold text-xl mb-2 text-b2b-text-primary">Спасибо!</h3>
-              <p className="text-b2b-text-secondary">
-                Мы отправим вам приглашение в марте 2025
-              </p>
+              <p className="text-b2b-text-secondary">Мы отправим вам приглашение в марте 2025</p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto">
@@ -115,9 +110,7 @@ const WaitlistSection = () => {
               >
                 {isLoading ? "Отправка..." : "Записаться в лист ожидания"}
               </Button>
-              <p className="text-b2b-text-muted text-sm">
-                Мы не передаём ваши данные третьим лицам и не спамим
-              </p>
+              <p className="text-b2b-text-muted text-sm">Мы не передаём ваши данные третьим лицам и не спамим</p>
             </form>
           )}
         </div>
