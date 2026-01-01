@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet";
 import B2BHeader from "@/components/b2b/B2BHeader";
 import B2BHero from "@/components/b2b/B2BHero";
+import PainPoints from "@/components/b2b/PainPoints";
 import B2BFooter from "@/components/b2b/B2BFooter";
 
 const B2B = () => {
@@ -25,9 +26,10 @@ const B2B = () => {
         <B2BHeader />
         <main>
           <B2BHero />
+          <PainPoints />
           
           {/* Placeholder sections for Phase 2 & 3 */}
-          <section id="features" className="py-24 bg-white">
+          <section id="features" className="py-24 bg-b2b-surface">
             <div className="max-w-7xl mx-auto px-6 text-center">
               <h2 className="text-3xl font-display font-bold text-b2b-text-primary mb-4">
                 Возможности
@@ -38,7 +40,7 @@ const B2B = () => {
             </div>
           </section>
 
-          <section id="pricing" className="py-24 bg-b2b-surface">
+          <section id="pricing" className="py-24 bg-white">
             <div className="max-w-7xl mx-auto px-6 text-center">
               <h2 className="text-3xl font-display font-bold text-b2b-text-primary mb-4">
                 Тарифы
@@ -49,7 +51,7 @@ const B2B = () => {
             </div>
           </section>
 
-          <section id="contact" className="py-24 bg-white">
+          <section id="contact" className="py-24 bg-b2b-surface">
             <div className="max-w-7xl mx-auto px-6 text-center">
               <h2 className="text-3xl font-display font-bold text-b2b-text-primary mb-4">
                 Оставить заявку
