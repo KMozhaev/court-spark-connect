@@ -14,7 +14,7 @@ import screenProfile from "@/assets/screen-profile.jpeg";
 
 const Index = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-white">
       <Header />
       <main>
         <HeroSection />

@@ -47,7 +47,7 @@ const PricingTier = ({ name, courtsSubheading, monthlyPrice, yearlyPrice, isYear
       )}
 
       {/* Icon & Name */}
-      <div className="flex items-center gap-3 mb-2">
+      <div className="flex items-center gap-3 mb-1">
         <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${
           popular ? "bg-b2b-primary/10" : "bg-b2b-surface"
         }`}>
@@ -57,7 +57,7 @@ const PricingTier = ({ name, courtsSubheading, monthlyPrice, yearlyPrice, isYear
       </div>
 
       {/* Courts Subheading */}
-      <p className="text-sm text-b2b-text-muted mb-4 pl-15">{courtsSubheading}</p>
+      <p className="text-sm text-b2b-text-muted mb-4 ml-15 pl-[60px]">{courtsSubheading}</p>
 
       {/* Price */}
       <div className="mb-6 pb-6 border-b border-b2b-border">
@@ -115,12 +115,12 @@ const B2BPricing = () => {
       features: [
         { text: "Онлайн-бронирование 24/7", included: true },
         { text: "Интеграция с ЮКассой", included: true },
+        { text: "Динамическое ценообразование", included: true },
         { text: "SMS-напоминания", included: true },
         { text: "Email-уведомления", included: true },
         { text: "Базовая аналитика", included: true },
-        { text: "Поддержка по email", included: true },
         { text: "Открытые матчи", included: false },
-        { text: "API интеграции", included: false },
+        { text: "Управление тренерами", included: false },
       ]
     },
     {
@@ -134,12 +134,10 @@ const B2BPricing = () => {
       features: [
         { text: "Всё из тарифа Старт", included: true },
         { text: "Управление абонементами", included: true },
-        { text: "Динамическое ценообразование", included: true },
+        { text: "Управление тренерами", included: true },
         { text: "Расширенная аналитика", included: true },
         { text: "Приоритетная поддержка", included: true },
-        { text: "Обучение персонала", included: true },
         { text: "Открытые матчи (скоро)", included: true },
-        { text: "API интеграции", included: false },
       ]
     },
     {
@@ -153,12 +151,8 @@ const B2BPricing = () => {
       features: [
         { text: "Всё из тарифа Профи", included: true },
         { text: "Мультилокация", included: true },
-        { text: "API интеграции", included: true },
-        { text: "White-label решение", included: true },
         { text: "Персональный менеджер", included: true },
-        { text: "SLA 99.9%", included: true },
-        { text: "Кастомная разработка", included: true },
-        { text: "Onboarding команды", included: true },
+        { text: "Кастомные доработки", included: true },
       ]
     }
   ];
@@ -176,14 +170,14 @@ const B2BPricing = () => {
           </p>
         </div>
 
-        {/* Billing Toggle */}
-        <div className="flex items-center justify-center gap-4 mb-12">
-          <span className={`text-sm font-medium transition-colors ${!isYearly ? 'text-b2b-text-primary' : 'text-b2b-text-muted'}`}>
+        {/* Billing Toggle - Fixed layout */}
+        <div className="flex items-center justify-center gap-3 mb-12">
+          <span className={`text-sm font-medium transition-colors min-w-[90px] text-right ${!isYearly ? 'text-b2b-text-primary' : 'text-b2b-text-muted'}`}>
             Ежемесячно
           </span>
           <button
             onClick={() => setIsYearly(!isYearly)}
-            className={`relative w-14 h-8 rounded-full transition-colors duration-300 ${
+            className={`relative w-14 h-8 rounded-full transition-colors duration-300 shrink-0 ${
               isYearly ? 'bg-b2b-primary' : 'bg-b2b-border'
             }`}
             aria-label="Toggle billing period"
@@ -194,14 +188,16 @@ const B2BPricing = () => {
               }`}
             />
           </button>
-          <span className={`text-sm font-medium transition-colors ${isYearly ? 'text-b2b-text-primary' : 'text-b2b-text-muted'}`}>
-            Ежегодно
-          </span>
-          {isYearly && (
-            <span className="bg-b2b-success/10 text-b2b-success text-xs font-semibold px-2 py-1 rounded-full">
-              -17%
+          <div className="flex items-center gap-2 min-w-[120px]">
+            <span className={`text-sm font-medium transition-colors ${isYearly ? 'text-b2b-text-primary' : 'text-b2b-text-muted'}`}>
+              Ежегодно
             </span>
-          )}
+            {isYearly && (
+              <span className="bg-b2b-success/10 text-b2b-success text-xs font-semibold px-2 py-1 rounded-full whitespace-nowrap">
+                -17%
+              </span>
+            )}
+          </div>
         </div>
 
         {/* Pricing Grid */}

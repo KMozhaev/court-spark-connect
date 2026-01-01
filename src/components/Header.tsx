@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { List, X } from "@phosphor-icons/react";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const isB2C = location.pathname === "/players";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,28 +29,46 @@ const Header = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "glass border-b border-border/50 shadow-soft"
+          ? "bg-white/95 backdrop-blur-xl border-b border-b2b-border shadow-sm"
           : "bg-transparent"
       }`}
     >
-      <div className="container mx-auto px-4">
+      <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link to="/players" className="font-display font-extrabold text-2xl text-foreground">
+          <Link to="/players" className="font-display font-extrabold text-2xl text-b2b-text-primary">
             Courtoo
           </Link>
 
+          {/* Toggle Switch - Same as B2B */}
+          <div className="hidden md:flex items-center bg-slate-100 rounded-full p-1 border-2 border-slate-200">
+            <Link
+              to="/"
+              className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
+                !isB2C
+                  ? "bg-b2b-primary text-white shadow-md"
+                  : "text-b2b-text-secondary hover:text-b2b-text-primary"
+              }`}
+            >
+              Для клубов
+            </Link>
+            <Link
+              to="/players"
+              className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
+                isB2C
+                  ? "bg-b2b-primary text-white shadow-md"
+                  : "text-b2b-text-secondary hover:text-b2b-text-primary"
+              }`}
+            >
+              Для игроков
+            </Link>
+          </div>
+
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-4">
-            <Link 
-              to="/" 
-              className="text-sm text-muted-foreground hover:text-primary transition-colors"
-            >
-              Для клубов →
-            </Link>
             <Button
               onClick={scrollToWaitlist}
-              className="bg-primary hover:bg-primary-hover text-primary-foreground rounded-full px-6 py-2.5 font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-primary-glow"
+              className="bg-b2b-primary hover:bg-b2b-primary-hover text-white rounded-lg px-6 py-2.5 font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
             >
               Записаться в лист ожидания
             </Button>
@@ -57,7 +77,7 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 text-foreground"
+            className="md:hidden p-2 text-b2b-text-primary"
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? (
@@ -70,16 +90,34 @@ const Header = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden py-6 border-t border-border/50 animate-fade-in">
-            <Link 
-              to="/" 
-              className="block text-muted-foreground hover:text-primary transition-colors mb-4"
-            >
-              Для клубов →
-            </Link>
+          <div className="md:hidden py-6 border-t border-b2b-border animate-fade-in bg-white">
+            {/* Mobile Toggle */}
+            <div className="flex items-center bg-slate-100 rounded-full p-1 mb-6 border-2 border-slate-200">
+              <Link
+                to="/"
+                className={`flex-1 text-center px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
+                  !isB2C
+                    ? "bg-b2b-primary text-white shadow-md"
+                    : "text-b2b-text-secondary"
+                }`}
+              >
+                Для клубов
+              </Link>
+              <Link
+                to="/players"
+                className={`flex-1 text-center px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
+                  isB2C
+                    ? "bg-b2b-primary text-white shadow-md"
+                    : "text-b2b-text-secondary"
+                }`}
+              >
+                Для игроков
+              </Link>
+            </div>
+
             <Button
               onClick={scrollToWaitlist}
-              className="w-full bg-primary hover:bg-primary-hover text-primary-foreground rounded-full py-3 font-semibold"
+              className="w-full bg-b2b-primary hover:bg-b2b-primary-hover text-white rounded-lg py-3 font-semibold"
             >
               Записаться в лист ожидания
             </Button>
