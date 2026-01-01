@@ -34,14 +34,15 @@ const B2BHeader = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <Link to="/" className="font-display font-extrabold text-2xl text-b2b-text-primary">
+        {/* CSS Grid: 3 columns [logo] [switcher] [right] */}
+        <div className="hidden md:grid grid-cols-3 items-center h-20">
+          {/* Logo - Left */}
+          <Link to="/" className="font-display font-extrabold text-2xl text-b2b-text-primary justify-self-start">
             Courtoo
           </Link>
 
-          {/* Toggle Switch - More noticeable */}
-          <div className="hidden md:flex items-center bg-slate-100 rounded-full p-1 border-2 border-slate-200">
+          {/* Toggle Switch - Center */}
+          <div className="flex items-center bg-slate-100 rounded-full p-1 border-2 border-slate-200 justify-self-center">
             <Link
               to="/"
               className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
@@ -64,30 +65,28 @@ const B2BHeader = () => {
             </Link>
           </div>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
-            <button
-              onClick={() => scrollToSection("features")}
-              className="text-sm font-medium text-b2b-text-secondary hover:text-b2b-primary transition-colors"
-            >
-              Возможности
-            </button>
-            <button
-              onClick={() => scrollToSection("pricing")}
-              className="text-sm font-medium text-b2b-text-secondary hover:text-b2b-primary transition-colors"
-            >
-              Тарифы
-            </button>
-            <button
-              onClick={() => scrollToSection("contact")}
-              className="text-sm font-medium text-b2b-text-secondary hover:text-b2b-primary transition-colors"
-            >
-              Контакты
-            </button>
-          </nav>
-
-          {/* CTA */}
-          <div className="hidden md:flex items-center gap-4">
+          {/* Nav + CTA - Right */}
+          <div className="flex items-center gap-8 justify-self-end">
+            <nav className="flex items-center gap-8">
+              <button
+                onClick={() => scrollToSection("features")}
+                className="text-sm font-medium text-b2b-text-secondary hover:text-b2b-primary transition-colors"
+              >
+                Возможности
+              </button>
+              <button
+                onClick={() => scrollToSection("pricing")}
+                className="text-sm font-medium text-b2b-text-secondary hover:text-b2b-primary transition-colors"
+              >
+                Тарифы
+              </button>
+              <button
+                onClick={() => scrollToSection("contact")}
+                className="text-sm font-medium text-b2b-text-secondary hover:text-b2b-primary transition-colors"
+              >
+                Контакты
+              </button>
+            </nav>
             <Button
               onClick={() => scrollToSection("contact")}
               className="bg-b2b-primary hover:bg-b2b-primary-hover text-white rounded-lg px-6 py-2.5 font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
@@ -95,11 +94,16 @@ const B2BHeader = () => {
               Оставить заявку
             </Button>
           </div>
+        </div>
 
-          {/* Mobile Menu Button */}
+        {/* Mobile Header */}
+        <div className="flex md:hidden items-center justify-between h-20">
+          <Link to="/" className="font-display font-extrabold text-2xl text-b2b-text-primary">
+            Courtoo
+          </Link>
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 text-b2b-text-primary"
+            className="p-2 text-b2b-text-primary"
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? (
