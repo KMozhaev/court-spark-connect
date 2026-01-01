@@ -20,7 +20,7 @@ const steps = [
 
 const HowItWorks = () => {
   return (
-    <section className="py-20 lg:py-28 bg-gradient-to-br from-slate-800 via-slate-900 to-slate-950" id="how-it-works">
+    <section className="py-20 lg:py-28 bg-b2b-primary" id="how-it-works">
       <div className="max-w-7xl mx-auto px-6">
         {/* Section Title */}
         <h2 className="font-display font-extrabold text-3xl md:text-4xl lg:text-5xl text-white text-center mb-12 lg:mb-16">
@@ -39,7 +39,7 @@ const HowItWorks = () => {
                 <step.icon
                   size={80}
                   weight="duotone"
-                  className="text-cyan-400"
+                  className="text-white/80"
                 />
               </div>
 
@@ -49,7 +49,7 @@ const HowItWorks = () => {
               </h3>
 
               {/* Description */}
-              <p className="text-slate-400 leading-relaxed max-w-xs mx-auto">
+              <p className="text-white/70 leading-relaxed max-w-xs mx-auto">
                 {step.description}
               </p>
             </div>

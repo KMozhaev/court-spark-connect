@@ -29,25 +29,25 @@ const Header = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-white/95 backdrop-blur-xl border-b border-slate-200 shadow-sm"
+          ? "bg-white/95 backdrop-blur-xl border-b border-b2b-border shadow-sm"
           : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link to="/players" className="font-display font-extrabold text-2xl text-slate-900">
+          <Link to="/players" className="font-display font-extrabold text-2xl text-b2b-text-primary">
             Courtoo
           </Link>
 
-          {/* Toggle Switch - Same as B2B */}
+          {/* Toggle Switch - Same as B2B, centered */}
           <div className="hidden md:flex items-center bg-slate-100 rounded-full p-1 border-2 border-slate-200">
             <Link
               to="/"
               className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
                 !isPlayers
-                  ? "bg-cyan-600 text-white shadow-md"
-                  : "text-slate-500 hover:text-slate-900"
+                  ? "bg-b2b-primary text-white shadow-md"
+                  : "text-b2b-text-secondary hover:text-b2b-text-primary"
               }`}
             >
               Для клубов
@@ -56,8 +56,8 @@ const Header = () => {
               to="/players"
               className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
                 isPlayers
-                  ? "bg-cyan-600 text-white shadow-md"
-                  : "text-slate-500 hover:text-slate-900"
+                  ? "bg-b2b-primary text-white shadow-md"
+                  : "text-b2b-text-secondary hover:text-b2b-text-primary"
               }`}
             >
               Для игроков
@@ -68,7 +68,7 @@ const Header = () => {
           <div className="hidden md:flex items-center gap-4">
             <Button
               onClick={scrollToWaitlist}
-              className="bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg px-6 py-2.5 font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
+              className="bg-b2b-primary hover:bg-b2b-primary-hover text-white rounded-lg px-6 py-2.5 font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
             >
               Записаться в лист ожидания
             </Button>
@@ -77,7 +77,7 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 text-slate-900"
+            className="md:hidden p-2 text-b2b-text-primary"
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? (
@@ -90,15 +90,15 @@ const Header = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden py-6 border-t border-slate-200 animate-fade-in bg-white">
+          <div className="md:hidden py-6 border-t border-b2b-border animate-fade-in bg-white">
             {/* Mobile Toggle */}
             <div className="flex items-center bg-slate-100 rounded-full p-1 mb-6 border-2 border-slate-200">
               <Link
                 to="/"
                 className={`flex-1 text-center px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
                   !isPlayers
-                    ? "bg-cyan-600 text-white shadow-md"
-                    : "text-slate-500"
+                    ? "bg-b2b-primary text-white shadow-md"
+                    : "text-b2b-text-secondary"
                 }`}
               >
                 Для клубов
@@ -107,8 +107,8 @@ const Header = () => {
                 to="/players"
                 className={`flex-1 text-center px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
                   isPlayers
-                    ? "bg-cyan-600 text-white shadow-md"
-                    : "text-slate-500"
+                    ? "bg-b2b-primary text-white shadow-md"
+                    : "text-b2b-text-secondary"
                 }`}
               >
                 Для игроков
@@ -117,7 +117,7 @@ const Header = () => {
 
             <Button
               onClick={scrollToWaitlist}
-              className="w-full bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg py-3 font-semibold"
+              className="w-full bg-b2b-primary hover:bg-b2b-primary-hover text-white rounded-lg py-3 font-semibold"
             >
               Записаться в лист ожидания
             </Button>
