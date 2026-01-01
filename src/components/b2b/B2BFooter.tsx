@@ -8,30 +8,22 @@ const B2BFooter = () => {
     <footer className="bg-slate-900 text-white py-16">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid md:grid-cols-4 gap-12 mb-12">
-          
           {/* Brand Column */}
           <div className="md:col-span-2">
             <Link to="/" className="font-display font-extrabold text-2xl text-white mb-4 block">
               Courtoo
             </Link>
             <p className="text-slate-400 mb-6 max-w-md">
-              Система управления для падел и теннисных клубов. Автоматизируйте бронирование, 
-              удерживайте клиентов и зарабатывайте больше.
+              Система управления для падел и теннисных клубов. Автоматизируйте бронирование, удерживайте клиентов и
+              зарабатывайте больше.
             </p>
             <div className="flex gap-4">
-              <a 
-                href="#" 
+              <a
+                href="#"
                 className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-b2b-primary transition-colors"
                 aria-label="Telegram"
               >
                 <TelegramLogo size={20} weight="fill" />
-              </a>
-              <a 
-                href="#" 
-                className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-b2b-primary transition-colors"
-                aria-label="Instagram"
-              >
-                <InstagramLogo size={20} weight="fill" />
               </a>
             </div>
           </div>
@@ -68,8 +60,8 @@ const B2BFooter = () => {
             <h4 className="font-display font-bold text-white mb-4">Контакты</h4>
             <ul className="space-y-3">
               <li>
-                <a 
-                  href="mailto:hello@courtoo.ru" 
+                <a
+                  href="mailto:hello@courtoo.ru"
                   className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors"
                 >
                   <Envelope size={18} />
@@ -77,8 +69,8 @@ const B2BFooter = () => {
                 </a>
               </li>
               <li>
-                <a 
-                  href="tel:+74951234567" 
+                <a
+                  href="tel:+74951234567"
                   className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors"
                 >
                   <Phone size={18} />
@@ -110,9 +102,7 @@ const B2BFooter = () => {
 
         {/* Bottom Bar */}
         <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-slate-500">
-            © {currentYear} Courtoo. Все права защищены.
-          </p>
+          <p className="text-sm text-slate-500">© {currentYear} Courtoo. Все права защищены.</p>
           <div className="flex gap-6 text-sm text-slate-500">
             <a href="#" className="hover:text-white transition-colors">
               Политика конфиденциальности
