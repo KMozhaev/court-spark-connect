@@ -116,7 +116,6 @@ const B2BPricing = () => {
         { text: "Онлайн-бронирование 24/7", included: true },
         { text: "Интеграция с ЮКассой", included: true },
         { text: "SMS-напоминания", included: true },
-        { text: "Email-уведомления", included: true },
         { text: "Динамическое ценообразование", included: true },
         { text: "Базовая аналитика", included: true },
         { text: "Открытые матчи", included: false },
@@ -170,7 +169,7 @@ const B2BPricing = () => {
         </div>
 
         {/* Billing Toggle */}
-        <div className="flex items-center justify-center gap-3 mb-12">
+        <div className="flex items-center justify-center gap-5 mb-12">
           <span className={`text-sm font-medium transition-colors ${!isYearly ? 'text-b2b-text-primary' : 'text-b2b-text-muted'}`}>
             Ежемесячно
           </span>
