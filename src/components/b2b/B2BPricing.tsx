@@ -175,13 +175,13 @@ const B2BPricing = () => {
           </span>
           <button
             onClick={() => setIsYearly(!isYearly)}
-            className={`relative w-12 h-7 rounded-full transition-colors duration-300 shrink-0 ${
+            className={`relative w-12 h-7 rounded-full transition-colors duration-300 shrink-0 overflow-hidden ${
               isYearly ? 'bg-b2b-primary' : 'bg-b2b-border'
             }`}
             aria-label="Toggle billing period"
           >
             <span
-              className={`absolute top-0.5 w-6 h-6 bg-white rounded-full shadow-md transition-transform duration-300 ${
+              className={`absolute left-0 top-0.5 w-6 h-6 bg-white rounded-full shadow-md transition-transform duration-300 ${
                 isYearly ? 'translate-x-[22px]' : 'translate-x-0.5'
               }`}
             />
