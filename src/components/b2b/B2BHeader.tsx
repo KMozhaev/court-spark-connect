@@ -1,0 +1,135 @@
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { List, X } from "@phosphor-icons/react";
+
+const B2BHeader = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+    setIsMobileMenuOpen(false);
+  };
+
+  return (
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-white/95 backdrop-blur-xl border-b border-b2b-border shadow-sm"
+          : "bg-transparent"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="flex items-center justify-between h-20">
+          {/* Logo */}
+          <Link to="/" className="font-display font-extrabold text-2xl text-b2b-text-primary">
+            Courtoo
+          </Link>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center gap-8">
+            <button
+              onClick={() => scrollToSection("features")}
+              className="text-sm font-medium text-b2b-text-secondary hover:text-b2b-primary transition-colors"
+            >
+              Возможности
+            </button>
+            <button
+              onClick={() => scrollToSection("pricing")}
+              className="text-sm font-medium text-b2b-text-secondary hover:text-b2b-primary transition-colors"
+            >
+              Тарифы
+            </button>
+            <button
+              onClick={() => scrollToSection("contact")}
+              className="text-sm font-medium text-b2b-text-secondary hover:text-b2b-primary transition-colors"
+            >
+              Контакты
+            </button>
+          </nav>
+
+          {/* CTA */}
+          <div className="hidden md:flex items-center gap-4">
+            <Link 
+              to="/players" 
+              className="text-sm text-b2b-text-secondary hover:text-b2b-primary transition-colors"
+            >
+              Для игроков →
+            </Link>
+            <Button
+              onClick={() => scrollToSection("contact")}
+              className="bg-b2b-primary hover:bg-b2b-primary-hover text-white rounded-lg px-6 py-2.5 font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
+            >
+              Оставить заявку
+            </Button>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden p-2 text-b2b-text-primary"
+            aria-label="Toggle menu"
+          >
+            {isMobileMenuOpen ? (
+              <X size={28} weight="bold" />
+            ) : (
+              <List size={28} weight="bold" />
+            )}
+          </button>
+        </div>
+
+        {/* Mobile Menu */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden py-6 border-t border-b2b-border animate-fade-in bg-white">
+            <nav className="flex flex-col gap-4 mb-6">
+              <button
+                onClick={() => scrollToSection("features")}
+                className="text-left text-b2b-text-secondary hover:text-b2b-primary transition-colors"
+              >
+                Возможности
+              </button>
+              <button
+                onClick={() => scrollToSection("pricing")}
+                className="text-left text-b2b-text-secondary hover:text-b2b-primary transition-colors"
+              >
+                Тарифы
+              </button>
+              <button
+                onClick={() => scrollToSection("contact")}
+                className="text-left text-b2b-text-secondary hover:text-b2b-primary transition-colors"
+              >
+                Контакты
+              </button>
+              <Link 
+                to="/players" 
+                className="text-b2b-text-secondary hover:text-b2b-primary transition-colors"
+              >
+                Для игроков →
+              </Link>
+            </nav>
+            <Button
+              onClick={() => scrollToSection("contact")}
+              className="w-full bg-b2b-primary hover:bg-b2b-primary-hover text-white rounded-lg py-3 font-semibold"
+            >
+              Оставить заявку
+            </Button>
+          </div>
+        )}
+      </div>
+    </header>
+  );
+};
+
+export default B2BHeader;
