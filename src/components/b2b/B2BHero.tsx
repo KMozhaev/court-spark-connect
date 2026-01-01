@@ -148,7 +148,7 @@ const B2BHero = () => {
                 <Button
                   onClick={openVideo}
                   variant="outline"
-                  className="border-2 border-b2b-primary bg-b2b-primary text-white hover:bg-b2b-primary-hover hover:border-b2b-primary-hover [&:hover]:text-white rounded-lg px-10 py-4 text-base font-semibold transition-all duration-300 min-h-[56px]"
+                  className="border-2 border-b2b-primary bg-white text-b2b-primary hover:bg-b2b-primary hover:text-white rounded-lg px-10 py-4 text-base font-semibold transition-all duration-300 min-h-[56px]"
                 >
                   <Play size={20} weight="fill" className="mr-2" />
                   Посмотреть как работает

@@ -104,7 +104,7 @@ const B2BContactForm = () => {
                   value={formData.phone}
                   onChange={handleChange}
                   placeholder="+7 (___) ___-__-__"
-                  className="border-b2b-border focus:border-b2b-primary"
+                  className="bg-white border-b2b-border focus:border-b2b-primary"
                   maxLength={20}
                   required
                 />
@@ -120,7 +120,7 @@ const B2BContactForm = () => {
                   value={formData.contactName}
                   onChange={handleChange}
                   placeholder="Иван Иванов"
-                  className="border-b2b-border focus:border-b2b-primary"
+                  className="bg-white border-b2b-border focus:border-b2b-primary"
                   maxLength={100}
                 />
               </div>
@@ -135,7 +135,7 @@ const B2BContactForm = () => {
                   value={formData.message}
                   onChange={handleChange}
                   placeholder="Расскажите о ваших задачах или вопросах..."
-                  className="border-b2b-border focus:border-b2b-primary min-h-[100px] resize-none"
+                  className="bg-white border-b2b-border focus:border-b2b-primary min-h-[100px] resize-none"
                   maxLength={1000}
                 />
               </div>
