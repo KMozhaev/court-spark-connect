@@ -18,23 +18,7 @@ const B2BFooter = () => {
               Система управления для падел и теннисных клубов. Автоматизируйте бронирование, 
               удерживайте клиентов и зарабатывайте больше.
             </p>
-            <div className="flex gap-4">
-              <a 
-                href="#" 
-                className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-b2b-primary transition-colors"
-                aria-label="Telegram"
-              >
-                <TelegramLogo size={20} weight="fill" />
-              </a>
-              <a 
-                href="#" 
-                className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-b2b-primary transition-colors"
-                aria-label="Instagram"
-              >
-                <InstagramLogo size={20} weight="fill" />
-              </a>
-            </div>
-          </div>
+
 
           {/* Links Column */}
           <div>
