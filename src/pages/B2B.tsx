@@ -3,6 +3,8 @@ import B2BHeader from "@/components/b2b/B2BHeader";
 import B2BHero from "@/components/b2b/B2BHero";
 import B2BCurrentSolutions from "@/components/b2b/B2BCurrentSolutions";
 import B2BComingSoon from "@/components/b2b/B2BComingSoon";
+import B2BPricing from "@/components/b2b/B2BPricing";
+import B2BContactForm from "@/components/b2b/B2BContactForm";
 import B2BFooter from "@/components/b2b/B2BFooter";
 
 const B2B = () => {
@@ -34,27 +36,11 @@ const B2B = () => {
             <B2BComingSoon />
           </section>
 
-          <section id="pricing" className="py-24 bg-b2b-surface">
-            <div className="max-w-7xl mx-auto px-6 text-center">
-              <h2 className="text-3xl font-display font-bold text-b2b-text-primary mb-4">
-                Тарифы
-              </h2>
-              <p className="text-b2b-text-secondary">
-                Раздел будет добавлен в Phase 3
-              </p>
-            </div>
-          </section>
+          {/* Pricing */}
+          <B2BPricing />
 
-          <section id="contact" className="py-24 bg-white">
-            <div className="max-w-7xl mx-auto px-6 text-center">
-              <h2 className="text-3xl font-display font-bold text-b2b-text-primary mb-4">
-                Оставить заявку
-              </h2>
-              <p className="text-b2b-text-secondary">
-                Форма будет добавлена в Phase 2
-              </p>
-            </div>
-          </section>
+          {/* Contact Form */}
+          <B2BContactForm />
         </main>
         <B2BFooter />
       </div>
