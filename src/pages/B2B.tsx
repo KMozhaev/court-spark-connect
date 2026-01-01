@@ -1,6 +1,8 @@
 import { Helmet } from "react-helmet";
 import B2BHeader from "@/components/b2b/B2BHeader";
 import B2BHero from "@/components/b2b/B2BHero";
+import B2BCurrentSolutions from "@/components/b2b/B2BCurrentSolutions";
+import B2BComingSoon from "@/components/b2b/B2BComingSoon";
 import B2BFooter from "@/components/b2b/B2BFooter";
 
 const B2B = () => {
@@ -26,16 +28,10 @@ const B2B = () => {
         <main>
           <B2BHero />
           
-          {/* Placeholder sections for Phase 2 & 3 */}
-          <section id="features" className="py-24 bg-white">
-            <div className="max-w-7xl mx-auto px-6 text-center">
-              <h2 className="text-3xl font-display font-bold text-b2b-text-primary mb-4">
-                Возможности
-              </h2>
-              <p className="text-b2b-text-secondary">
-                Раздел будет добавлен в Phase 2
-              </p>
-            </div>
+          {/* Pain Points - Current Solutions */}
+          <section id="features">
+            <B2BCurrentSolutions />
+            <B2BComingSoon />
           </section>
 
           <section id="pricing" className="py-24 bg-b2b-surface">
