@@ -1,4 +1,4 @@
-import { Bell, Clock, ChartLine, Database } from "@phosphor-icons/react";
+import { Bell, Clock, ChartLine, Database, ChartBar, CheckCircle } from "@phosphor-icons/react";
 import type { Icon } from "@phosphor-icons/react";
 
 interface SolutionCardProps {
@@ -12,7 +12,7 @@ interface SolutionCardProps {
 
 const SolutionCard = ({ icon: IconComponent, iconColor, title, problem, stat, solutions }: SolutionCardProps) => {
   return (
-    <div className="bg-white rounded-2xl p-6 lg:p-8 border border-b2b-border shadow-sm hover:shadow-md transition-shadow">
+    <div className="bg-white rounded-2xl p-6 lg:p-8 border border-b2b-border shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
       {/* Header */}
       <div className="flex items-start gap-4 mb-4">
         <div className={`p-3 rounded-xl ${iconColor}`}>
@@ -29,9 +29,10 @@ const SolutionCard = ({ icon: IconComponent, iconColor, title, problem, stat, so
       </p>
 
       {/* Stat */}
-      <div className="bg-b2b-surface rounded-lg px-3 py-2 mb-4">
+      <div className="bg-b2b-surface rounded-lg px-3 py-2 mb-4 flex items-center gap-2">
+        <ChartBar size={16} weight="duotone" className="text-b2b-primary shrink-0" />
         <p className="text-sm font-medium text-b2b-text-primary">
-          📊 {stat}
+          {stat}
         </p>
       </div>
 
@@ -39,7 +40,7 @@ const SolutionCard = ({ icon: IconComponent, iconColor, title, problem, stat, so
       <ul className="space-y-2">
         {solutions.map((solution, index) => (
           <li key={index} className="flex items-start gap-2 text-sm text-b2b-text-secondary">
-            <span className="text-b2b-primary mt-0.5">✓</span>
+            <CheckCircle size={18} weight="duotone" className="text-b2b-success shrink-0 mt-0.5" />
             <span>{solution}</span>
           </li>
         ))}
