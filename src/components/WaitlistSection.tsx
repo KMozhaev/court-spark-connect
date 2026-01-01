@@ -41,29 +41,29 @@ const WaitlistSection = () => {
   return (
     <section
       id="waitlist"
-      className="py-20 lg:py-28 bg-section-dark text-white"
+      className="py-20 lg:py-28 bg-slate-100"
     >
-      <div className="container mx-auto px-4">
+      <div className="max-w-7xl mx-auto px-6">
         <div className="max-w-2xl mx-auto text-center">
           {/* Title */}
-          <h2 className="font-display font-extrabold text-3xl md:text-4xl lg:text-display-md mb-4">
+          <h2 className="font-display font-extrabold text-3xl md:text-4xl lg:text-5xl text-slate-900 mb-4">
             Запишись в лист ожидания
           </h2>
 
           {/* Subtitle */}
-          <p className="text-white/70 text-lg mb-10">
+          <p className="text-slate-600 text-lg mb-10">
             Запуск в марте 2025. Успей получить эксклюзивные условия для первых пользователей.
           </p>
 
           {/* Promo Box */}
-          <div className="bg-accent/20 border border-accent/30 rounded-2xl p-6 mb-10">
+          <div className="bg-cyan-50 border border-cyan-200 rounded-2xl p-6 mb-10">
             <div className="flex items-start gap-4 text-left">
-              <Gift size={32} weight="duotone" className="text-accent flex-shrink-0" />
+              <Gift size={32} weight="duotone" className="text-cyan-600 flex-shrink-0" />
               <div>
-                <h3 className="font-display font-bold text-lg mb-1">
+                <h3 className="font-display font-bold text-lg mb-1 text-slate-900">
                   Бонус для ранних пользователей
                 </h3>
-                <p className="text-white/70">
+                <p className="text-slate-600">
                   Первые 500 человек получат бесплатный месяц Premium и скидку 20% на первый абонемент
                 </p>
               </div>
@@ -72,10 +72,10 @@ const WaitlistSection = () => {
 
           {/* Form or Success Message */}
           {isSubmitted ? (
-            <div className="bg-accent/20 border border-accent/30 rounded-2xl p-8 animate-scale-in">
-              <CheckCircle size={48} weight="fill" className="text-accent mx-auto mb-4" />
-              <h3 className="font-display font-bold text-xl mb-2">Спасибо!</h3>
-              <p className="text-white/70">
+            <div className="bg-cyan-50 border border-cyan-200 rounded-2xl p-8 animate-scale-in">
+              <CheckCircle size={48} weight="fill" className="text-cyan-600 mx-auto mb-4" />
+              <h3 className="font-display font-bold text-xl mb-2 text-slate-900">Спасибо!</h3>
+              <p className="text-slate-600">
                 Мы отправим вам приглашение в марте 2025
               </p>
             </div>
@@ -88,7 +88,7 @@ const WaitlistSection = () => {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="h-14 rounded-full bg-white/10 border-white/20 text-white placeholder:text-white/50 backdrop-blur-sm focus:border-accent focus:ring-accent"
+                className="h-14 rounded-lg bg-white border-slate-300 text-slate-900 placeholder:text-slate-400 focus:border-cyan-500 focus:ring-cyan-500"
               />
               <Input
                 type="email"
@@ -97,7 +97,7 @@ const WaitlistSection = () => {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="h-14 rounded-full bg-white/10 border-white/20 text-white placeholder:text-white/50 backdrop-blur-sm focus:border-accent focus:ring-accent"
+                className="h-14 rounded-lg bg-white border-slate-300 text-slate-900 placeholder:text-slate-400 focus:border-cyan-500 focus:ring-cyan-500"
               />
               <Input
                 type="tel"
@@ -106,16 +106,16 @@ const WaitlistSection = () => {
                 value={formData.phone}
                 onChange={handleChange}
                 required
-                className="h-14 rounded-full bg-white/10 border-white/20 text-white placeholder:text-white/50 backdrop-blur-sm focus:border-accent focus:ring-accent"
+                className="h-14 rounded-lg bg-white border-slate-300 text-slate-900 placeholder:text-slate-400 focus:border-cyan-500 focus:ring-cyan-500"
               />
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="w-full h-14 bg-primary hover:bg-primary-hover text-primary-foreground rounded-full font-semibold text-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-primary-glow"
+                className="w-full h-14 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg font-semibold text-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
               >
                 {isLoading ? "Отправка..." : "Записаться в лист ожидания"}
               </Button>
-              <p className="text-white/50 text-sm">
+              <p className="text-slate-500 text-sm">
                 Мы не передаём ваши данные третьим лицам и не спамим
               </p>
             </form>

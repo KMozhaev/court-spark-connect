@@ -20,10 +20,10 @@ const problems = [
 
 const ProblemSection = () => {
   return (
-    <section className="py-20 lg:py-28 bg-background-secondary">
-      <div className="container mx-auto px-4">
+    <section className="py-20 lg:py-28 bg-slate-50">
+      <div className="max-w-7xl mx-auto px-6">
         {/* Section Title */}
-        <h2 className="font-display font-extrabold text-3xl md:text-4xl lg:text-display-md text-foreground text-center mb-12 lg:mb-16">
+        <h2 className="font-display font-extrabold text-3xl md:text-4xl lg:text-5xl text-slate-900 text-center mb-12 lg:mb-16">
           Знакомые проблемы?
         </h2>
 
@@ -32,7 +32,7 @@ const ProblemSection = () => {
           {problems.map((problem, index) => (
             <div
               key={index}
-              className="group card-soft p-8 bg-surface hover:bg-surface-hover"
+              className="group bg-white rounded-2xl p-8 border border-slate-200 shadow-sm hover:shadow-lg hover:border-cyan-200 transition-all duration-300"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* Icon */}
@@ -40,17 +40,17 @@ const ProblemSection = () => {
                 <problem.icon
                   size={56}
                   weight="duotone"
-                  className="text-primary icon-hover"
+                  className="text-cyan-600"
                 />
               </div>
 
               {/* Title */}
-              <h3 className="font-display font-bold text-xl mb-3 text-foreground">
+              <h3 className="font-display font-bold text-xl mb-3 text-slate-900">
                 {problem.title}
               </h3>
 
               {/* Description */}
-              <p className="text-muted-foreground leading-relaxed">
+              <p className="text-slate-600 leading-relaxed">
                 {problem.description}
               </p>
             </div>
