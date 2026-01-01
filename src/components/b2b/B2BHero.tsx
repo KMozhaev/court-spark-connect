@@ -13,29 +13,29 @@ interface StatCardProps {
 
 const variantStyles = {
   danger: {
-    bg: "bg-red-50",
-    border: "border-red-200 hover:border-red-400",
+    bg: "bg-white",
+    border: "border-2 border-red-300 hover:border-red-400",
     iconBg: "bg-red-100",
     iconColor: "text-red-500",
     valueColor: "text-red-600",
   },
   warning: {
-    bg: "bg-amber-50",
-    border: "border-amber-200 hover:border-amber-400",
+    bg: "bg-white",
+    border: "border-2 border-amber-300 hover:border-amber-400",
     iconBg: "bg-amber-100",
     iconColor: "text-amber-500",
     valueColor: "text-amber-600",
   },
   success: {
-    bg: "bg-green-50",
-    border: "border-green-200 hover:border-green-400",
+    bg: "bg-white",
+    border: "border-2 border-green-300 hover:border-green-400",
     iconBg: "bg-green-100",
     iconColor: "text-green-500",
     valueColor: "text-green-600",
   },
   primary: {
-    bg: "bg-blue-50",
-    border: "border-blue-200 hover:border-blue-400",
+    bg: "bg-white",
+    border: "border-2 border-blue-300 hover:border-blue-400",
     iconBg: "bg-blue-100",
     iconColor: "text-blue-500",
     valueColor: "text-blue-600",
@@ -143,7 +143,7 @@ const B2BHero = () => {
               <Button
                 onClick={scrollToFeatures}
                 variant="outline"
-                className="border-2 border-b2b-primary text-b2b-primary hover:bg-b2b-primary hover:text-white rounded-lg px-10 py-4 text-base font-semibold transition-all duration-300 min-h-[56px]"
+                className="border-2 border-b2b-primary text-b2b-primary hover:bg-b2b-primary hover:text-white [&:hover]:text-white rounded-lg px-10 py-4 text-base font-semibold transition-all duration-300 min-h-[56px]"
               >
                 Посмотреть как работает
               </Button>
