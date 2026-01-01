@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Check, Star, Rocket, Lightning } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 
@@ -8,22 +9,26 @@ interface PricingFeature {
 
 interface PricingTierProps {
   name: string;
-  description: string;
-  price: string;
-  priceNote: string;
+  courtsSubheading: string;
+  monthlyPrice: string;
+  yearlyPrice: string;
+  isYearly: boolean;
   features: PricingFeature[];
   cta: string;
   popular?: boolean;
   icon: React.ReactNode;
+  isCustom?: boolean;
 }
 
-const PricingTier = ({ name, description, price, priceNote, features, cta, popular, icon }: PricingTierProps) => {
+const PricingTier = ({ name, courtsSubheading, monthlyPrice, yearlyPrice, isYearly, features, cta, popular, icon, isCustom }: PricingTierProps) => {
   const scrollToContact = () => {
     const element = document.getElementById("contact");
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+  const displayPrice = isCustom ? "По запросу" : (isYearly ? yearlyPrice : monthlyPrice);
 
   return (
     <div className={`relative bg-white rounded-2xl p-6 lg:p-8 border-2 transition-all duration-300 hover:-translate-y-1 ${
@@ -42,24 +47,27 @@ const PricingTier = ({ name, description, price, priceNote, features, cta, popul
       )}
 
       {/* Icon & Name */}
-      <div className="flex items-center gap-3 mb-4">
+      <div className="flex items-center gap-3 mb-2">
         <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${
           popular ? "bg-b2b-primary/10" : "bg-b2b-surface"
         }`}>
           {icon}
         </div>
-        <div>
-          <h3 className="font-display font-bold text-xl text-b2b-text-primary">{name}</h3>
-          <p className="text-sm text-b2b-text-muted">{description}</p>
-        </div>
+        <h3 className="font-display font-bold text-xl text-b2b-text-primary">{name}</h3>
       </div>
+
+      {/* Courts Subheading */}
+      <p className="text-sm text-b2b-text-muted mb-4 pl-15">{courtsSubheading}</p>
 
       {/* Price */}
       <div className="mb-6 pb-6 border-b border-b2b-border">
         <div className="flex items-baseline gap-1">
-          <span className="text-4xl font-display font-bold text-b2b-text-primary">{price}</span>
-          <span className="text-b2b-text-muted">{priceNote}</span>
+          <span className="text-4xl font-display font-bold text-b2b-text-primary">{displayPrice}</span>
+          {!isCustom && <span className="text-b2b-text-muted">/месяц</span>}
         </div>
+        {!isCustom && isYearly && (
+          <p className="text-xs text-b2b-success mt-1">Экономия при оплате за год</p>
+        )}
       </div>
 
       {/* Features */}
@@ -93,73 +101,73 @@ const PricingTier = ({ name, description, price, priceNote, features, cta, popul
   );
 };
 
-const pricingTiers: PricingTierProps[] = [
-  {
-    name: "Старт",
-    description: "Для небольших клубов",
-    price: "4 900₽",
-    priceNote: "/месяц",
-    icon: <Lightning size={24} weight="duotone" className="text-b2b-primary" />,
-    cta: "Начать бесплатно",
-    features: [
-      { text: "До 4 кортов", included: true },
-      { text: "Онлайн-бронирование 24/7", included: true },
-      { text: "Интеграция с ЮКассой", included: true },
-      { text: "SMS-напоминания", included: true },
-      { text: "Email-уведомления", included: true },
-      { text: "Базовая аналитика", included: true },
-      { text: "Поддержка по email", included: true },
-      { text: "Открытые матчи", included: false },
-      { text: "API интеграции", included: false },
-    ]
-  },
-  {
-    name: "Профи",
-    description: "Для растущих клубов",
-    price: "9 900₽",
-    priceNote: "/месяц",
-    icon: <Star size={24} weight="duotone" className="text-b2b-primary" />,
-    cta: "Выбрать Профи",
-    popular: true,
-    features: [
-      { text: "До 8 кортов", included: true },
-      { text: "Всё из тарифа Старт", included: true },
-      { text: "Управление абонементами", included: true },
-      { text: "Динамическое ценообразование", included: true },
-      { text: "Расширенная аналитика", included: true },
-      { text: "Приоритетная поддержка", included: true },
-      { text: "Обучение персонала", included: true },
-      { text: "Открытые матчи (скоро)", included: true },
-      { text: "API интеграции", included: false },
-    ]
-  },
-  {
-    name: "Бизнес",
-    description: "Для сети клубов",
-    price: "По запросу",
-    priceNote: "",
-    icon: <Rocket size={24} weight="duotone" className="text-b2b-primary" />,
-    cta: "Связаться с нами",
-    features: [
-      { text: "Неограниченно кортов", included: true },
-      { text: "Всё из тарифа Профи", included: true },
-      { text: "Мультилокация", included: true },
-      { text: "API интеграции", included: true },
-      { text: "White-label решение", included: true },
-      { text: "Персональный менеджер", included: true },
-      { text: "SLA 99.9%", included: true },
-      { text: "Кастомная разработка", included: true },
-      { text: "Onboarding команды", included: true },
-    ]
-  }
-];
-
 const B2BPricing = () => {
+  const [isYearly, setIsYearly] = useState(true);
+
+  const pricingTiers: Omit<PricingTierProps, 'isYearly'>[] = [
+    {
+      name: "Старт",
+      courtsSubheading: "До 4 кортов",
+      monthlyPrice: "5 900₽",
+      yearlyPrice: "4 900₽",
+      icon: <Lightning size={24} weight="duotone" className="text-b2b-primary" />,
+      cta: "Попробовать бесплатно",
+      features: [
+        { text: "Онлайн-бронирование 24/7", included: true },
+        { text: "Интеграция с ЮКассой", included: true },
+        { text: "SMS-напоминания", included: true },
+        { text: "Email-уведомления", included: true },
+        { text: "Базовая аналитика", included: true },
+        { text: "Поддержка по email", included: true },
+        { text: "Открытые матчи", included: false },
+        { text: "API интеграции", included: false },
+      ]
+    },
+    {
+      name: "Профи",
+      courtsSubheading: "До 8 кортов",
+      monthlyPrice: "11 900₽",
+      yearlyPrice: "9 900₽",
+      icon: <Star size={24} weight="duotone" className="text-b2b-primary" />,
+      cta: "Попробовать бесплатно",
+      popular: true,
+      features: [
+        { text: "Всё из тарифа Старт", included: true },
+        { text: "Управление абонементами", included: true },
+        { text: "Динамическое ценообразование", included: true },
+        { text: "Расширенная аналитика", included: true },
+        { text: "Приоритетная поддержка", included: true },
+        { text: "Обучение персонала", included: true },
+        { text: "Открытые матчи (скоро)", included: true },
+        { text: "API интеграции", included: false },
+      ]
+    },
+    {
+      name: "Бизнес",
+      courtsSubheading: "Неограниченно кортов",
+      monthlyPrice: "",
+      yearlyPrice: "",
+      isCustom: true,
+      icon: <Rocket size={24} weight="duotone" className="text-b2b-primary" />,
+      cta: "Связаться с нами",
+      features: [
+        { text: "Всё из тарифа Профи", included: true },
+        { text: "Мультилокация", included: true },
+        { text: "API интеграции", included: true },
+        { text: "White-label решение", included: true },
+        { text: "Персональный менеджер", included: true },
+        { text: "SLA 99.9%", included: true },
+        { text: "Кастомная разработка", included: true },
+        { text: "Onboarding команды", included: true },
+      ]
+    }
+  ];
+
   return (
     <section id="pricing" className="py-20 lg:py-28 bg-b2b-surface">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
-        <div className="text-center mb-12 lg:mb-16">
+        <div className="text-center mb-8">
           <h2 className="font-display font-bold text-3xl md:text-4xl text-b2b-text-primary mb-4">
             Простое и прозрачное ценообразование
           </h2>
@@ -168,18 +176,46 @@ const B2BPricing = () => {
           </p>
         </div>
 
+        {/* Billing Toggle */}
+        <div className="flex items-center justify-center gap-4 mb-12">
+          <span className={`text-sm font-medium transition-colors ${!isYearly ? 'text-b2b-text-primary' : 'text-b2b-text-muted'}`}>
+            Ежемесячно
+          </span>
+          <button
+            onClick={() => setIsYearly(!isYearly)}
+            className={`relative w-14 h-8 rounded-full transition-colors duration-300 ${
+              isYearly ? 'bg-b2b-primary' : 'bg-b2b-border'
+            }`}
+            aria-label="Toggle billing period"
+          >
+            <span
+              className={`absolute top-1 w-6 h-6 bg-white rounded-full shadow-md transition-transform duration-300 ${
+                isYearly ? 'translate-x-7' : 'translate-x-1'
+              }`}
+            />
+          </button>
+          <span className={`text-sm font-medium transition-colors ${isYearly ? 'text-b2b-text-primary' : 'text-b2b-text-muted'}`}>
+            Ежегодно
+          </span>
+          {isYearly && (
+            <span className="bg-b2b-success/10 text-b2b-success text-xs font-semibold px-2 py-1 rounded-full">
+              -17%
+            </span>
+          )}
+        </div>
+
         {/* Pricing Grid */}
         <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
           {pricingTiers.map((tier, index) => (
-            <PricingTier key={index} {...tier} />
+            <PricingTier key={index} {...tier} isYearly={isYearly} />
           ))}
         </div>
 
         {/* Additional Note */}
         <div className="text-center mt-12">
-          <p className="text-b2b-text-muted text-sm">
+          <p className="text-b2b-text-secondary text-sm max-w-2xl mx-auto">
             Все тарифы включают бесплатное подключение и обучение. 
-            Сниженный эквайринг от 1.5% через ЮКассу.
+            Эксклюзивные условия по эквайрингу ЮКассы от 0.7%
           </p>
         </div>
       </div>

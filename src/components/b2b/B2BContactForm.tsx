@@ -6,7 +6,6 @@ import {
   PaperPlaneTilt, 
   Phone, 
   Envelope, 
-  MapPin, 
   TelegramLogo,
   CheckCircle,
   SpinnerGap
@@ -18,11 +17,8 @@ const B2BContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [formData, setFormData] = useState({
-    clubName: "",
     contactName: "",
-    email: "",
     phone: "",
-    courtsCount: "",
     message: ""
   });
 
@@ -34,22 +30,11 @@ const B2BContactForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Basic validation
-    if (!formData.clubName.trim() || !formData.email.trim() || !formData.phone.trim()) {
+    // Basic validation - only phone is required
+    if (!formData.phone.trim()) {
       toast({
         title: "Заполните обязательные поля",
-        description: "Название клуба, email и телефон обязательны",
-        variant: "destructive"
-      });
-      return;
-    }
-
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.email)) {
-      toast({
-        title: "Некорректный email",
-        description: "Пожалуйста, введите корректный email адрес",
+        description: "Телефон обязателен",
         variant: "destructive"
       });
       return;
@@ -71,7 +56,7 @@ const B2BContactForm = () => {
 
   if (isSubmitted) {
     return (
-      <section id="contact" className="py-20 lg:py-28 bg-white">
+      <section id="contact" className="py-20 lg:py-28 bg-slate-50">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <div className="w-20 h-20 rounded-full bg-b2b-success/10 flex items-center justify-center mx-auto mb-6">
             <CheckCircle size={48} weight="duotone" className="text-b2b-success" />
@@ -95,7 +80,7 @@ const B2BContactForm = () => {
   }
 
   return (
-    <section id="contact" className="py-20 lg:py-28 bg-white">
+    <section id="contact" className="py-20 lg:py-28 bg-slate-50">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
           {/* Left Column - Form */}
@@ -108,85 +93,35 @@ const B2BContactForm = () => {
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-5">
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="clubName" className="block text-sm font-medium text-b2b-text-primary mb-2">
-                    Название клуба *
-                  </label>
-                  <Input
-                    id="clubName"
-                    name="clubName"
-                    value={formData.clubName}
-                    onChange={handleChange}
-                    placeholder="Tennis Club Moscow"
-                    className="border-b2b-border focus:border-b2b-primary"
-                    maxLength={100}
-                    required
-                  />
-                </div>
-                <div>
-                  <label htmlFor="contactName" className="block text-sm font-medium text-b2b-text-primary mb-2">
-                    Ваше имя
-                  </label>
-                  <Input
-                    id="contactName"
-                    name="contactName"
-                    value={formData.contactName}
-                    onChange={handleChange}
-                    placeholder="Иван Иванов"
-                    className="border-b2b-border focus:border-b2b-primary"
-                    maxLength={100}
-                  />
-                </div>
-              </div>
-
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-b2b-text-primary mb-2">
-                    Email *
-                  </label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="info@club.ru"
-                    className="border-b2b-border focus:border-b2b-primary"
-                    maxLength={255}
-                    required
-                  />
-                </div>
-                <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-b2b-text-primary mb-2">
-                    Телефон *
-                  </label>
-                  <Input
-                    id="phone"
-                    name="phone"
-                    type="tel"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    placeholder="+7 (___) ___-__-__"
-                    className="border-b2b-border focus:border-b2b-primary"
-                    maxLength={20}
-                    required
-                  />
-                </div>
+              <div>
+                <label htmlFor="phone" className="block text-sm font-medium text-b2b-text-primary mb-2">
+                  Телефон *
+                </label>
+                <Input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  placeholder="+7 (___) ___-__-__"
+                  className="border-b2b-border focus:border-b2b-primary"
+                  maxLength={20}
+                  required
+                />
               </div>
 
               <div>
-                <label htmlFor="courtsCount" className="block text-sm font-medium text-b2b-text-primary mb-2">
-                  Количество кортов
+                <label htmlFor="contactName" className="block text-sm font-medium text-b2b-text-primary mb-2">
+                  Ваше имя
                 </label>
                 <Input
-                  id="courtsCount"
-                  name="courtsCount"
-                  value={formData.courtsCount}
+                  id="contactName"
+                  name="contactName"
+                  value={formData.contactName}
                   onChange={handleChange}
-                  placeholder="Например: 4 теннисных + 2 падел"
+                  placeholder="Иван Иванов"
                   className="border-b2b-border focus:border-b2b-primary"
-                  maxLength={50}
+                  maxLength={100}
                 />
               </div>
 
@@ -231,62 +166,52 @@ const B2BContactForm = () => {
 
           {/* Right Column - Contact Info */}
           <div className="lg:pl-8">
-            <div className="bg-b2b-surface rounded-2xl p-8 mb-8">
+            <div className="bg-white rounded-2xl p-8 mb-8 border border-b2b-border">
               <h3 className="font-display font-bold text-xl text-b2b-text-primary mb-6">
                 Или свяжитесь напрямую
               </h3>
               
               <div className="space-y-4">
                 <a 
-                  href="mailto:hello@courtoo.ru"
-                  className="flex items-center gap-4 p-4 bg-white rounded-xl border border-b2b-border hover:border-b2b-primary transition-colors group"
+                  href="mailto:office@courtoo.ru"
+                  className="flex items-center gap-4 p-4 bg-b2b-surface rounded-xl border border-b2b-border hover:border-b2b-primary transition-colors group"
                 >
                   <div className="w-12 h-12 rounded-xl bg-b2b-primary/10 flex items-center justify-center group-hover:bg-b2b-primary/20 transition-colors">
                     <Envelope size={24} weight="duotone" className="text-b2b-primary" />
                   </div>
                   <div>
                     <div className="text-sm text-b2b-text-muted">Email</div>
-                    <div className="font-medium text-b2b-text-primary">hello@courtoo.ru</div>
+                    <div className="font-medium text-b2b-text-primary">office@courtoo.ru</div>
                   </div>
                 </a>
 
                 <a 
-                  href="tel:+74951234567"
-                  className="flex items-center gap-4 p-4 bg-white rounded-xl border border-b2b-border hover:border-b2b-primary transition-colors group"
+                  href="tel:+79150954686"
+                  className="flex items-center gap-4 p-4 bg-b2b-surface rounded-xl border border-b2b-border hover:border-b2b-primary transition-colors group"
                 >
                   <div className="w-12 h-12 rounded-xl bg-b2b-primary/10 flex items-center justify-center group-hover:bg-b2b-primary/20 transition-colors">
                     <Phone size={24} weight="duotone" className="text-b2b-primary" />
                   </div>
                   <div>
                     <div className="text-sm text-b2b-text-muted">Телефон</div>
-                    <div className="font-medium text-b2b-text-primary">+7 (495) 123-45-67</div>
+                    <div className="font-medium text-b2b-text-primary">+7 (915) 095-46-86</div>
                   </div>
                 </a>
 
                 <a 
-                  href="https://t.me/courtoo"
+                  href="https://t.me/kirillmozhaev"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-4 p-4 bg-white rounded-xl border border-b2b-border hover:border-b2b-primary transition-colors group"
+                  className="flex items-center gap-4 p-4 bg-b2b-surface rounded-xl border border-b2b-border hover:border-b2b-primary transition-colors group"
                 >
                   <div className="w-12 h-12 rounded-xl bg-b2b-primary/10 flex items-center justify-center group-hover:bg-b2b-primary/20 transition-colors">
                     <TelegramLogo size={24} weight="duotone" className="text-b2b-primary" />
                   </div>
                   <div>
                     <div className="text-sm text-b2b-text-muted">Telegram</div>
-                    <div className="font-medium text-b2b-text-primary">@courtoo</div>
+                    <div className="font-medium text-b2b-text-primary">Написать в Telegram</div>
                   </div>
                 </a>
-
-                <div className="flex items-center gap-4 p-4 bg-white rounded-xl border border-b2b-border">
-                  <div className="w-12 h-12 rounded-xl bg-b2b-primary/10 flex items-center justify-center">
-                    <MapPin size={24} weight="duotone" className="text-b2b-primary" />
-                  </div>
-                  <div>
-                    <div className="text-sm text-b2b-text-muted">Офис</div>
-                    <div className="font-medium text-b2b-text-primary">Москва, Россия</div>
-                  </div>
-                </div>
               </div>
             </div>
 
@@ -296,6 +221,10 @@ const B2BContactForm = () => {
                 Почему клубы выбирают нас
               </h4>
               <ul className="space-y-3">
+                <li className="flex items-start gap-3 text-sm text-b2b-text-secondary">
+                  <CheckCircle size={20} weight="duotone" className="text-b2b-success shrink-0 mt-0.5" />
+                  <span>Единственная РФ платформа созданная специально под задачи теннисных и падел клубов</span>
+                </li>
                 <li className="flex items-center gap-3 text-sm text-b2b-text-secondary">
                   <CheckCircle size={20} weight="duotone" className="text-b2b-success shrink-0" />
                   Подключение за 1 день
@@ -303,14 +232,6 @@ const B2BContactForm = () => {
                 <li className="flex items-center gap-3 text-sm text-b2b-text-secondary">
                   <CheckCircle size={20} weight="duotone" className="text-b2b-success shrink-0" />
                   Бесплатный пробный период 1 месяц
-                </li>
-                <li className="flex items-center gap-3 text-sm text-b2b-text-secondary">
-                  <CheckCircle size={20} weight="duotone" className="text-b2b-success shrink-0" />
-                  Обучение персонала включено
-                </li>
-                <li className="flex items-center gap-3 text-sm text-b2b-text-secondary">
-                  <CheckCircle size={20} weight="duotone" className="text-b2b-success shrink-0" />
-                  Техподдержка на русском языке
                 </li>
               </ul>
             </div>

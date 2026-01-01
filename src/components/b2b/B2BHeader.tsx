@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { List, X } from "@phosphor-icons/react";
 
 const B2BHeader = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const isB2B = location.pathname === "/" || location.pathname === "/b2b";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,6 +40,30 @@ const B2BHeader = () => {
             Courtoo
           </Link>
 
+          {/* Toggle Switch - More noticeable */}
+          <div className="hidden md:flex items-center bg-slate-100 rounded-full p-1 border-2 border-slate-200">
+            <Link
+              to="/"
+              className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
+                isB2B
+                  ? "bg-b2b-primary text-white shadow-md"
+                  : "text-b2b-text-secondary hover:text-b2b-text-primary"
+              }`}
+            >
+              Для клубов
+            </Link>
+            <Link
+              to="/players"
+              className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
+                !isB2B
+                  ? "bg-b2b-primary text-white shadow-md"
+                  : "text-b2b-text-secondary hover:text-b2b-text-primary"
+              }`}
+            >
+              Для игроков
+            </Link>
+          </div>
+
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
             <button
@@ -62,12 +88,6 @@ const B2BHeader = () => {
 
           {/* CTA */}
           <div className="hidden md:flex items-center gap-4">
-            <Link 
-              to="/players" 
-              className="text-sm text-b2b-text-secondary hover:text-b2b-primary transition-colors"
-            >
-              Для игроков →
-            </Link>
             <Button
               onClick={() => scrollToSection("contact")}
               className="bg-b2b-primary hover:bg-b2b-primary-hover text-white rounded-lg px-6 py-2.5 font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
@@ -93,6 +113,30 @@ const B2BHeader = () => {
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
           <div className="md:hidden py-6 border-t border-b2b-border animate-fade-in bg-white">
+            {/* Mobile Toggle */}
+            <div className="flex items-center bg-slate-100 rounded-full p-1 mb-6 border-2 border-slate-200">
+              <Link
+                to="/"
+                className={`flex-1 text-center px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
+                  isB2B
+                    ? "bg-b2b-primary text-white shadow-md"
+                    : "text-b2b-text-secondary"
+                }`}
+              >
+                Для клубов
+              </Link>
+              <Link
+                to="/players"
+                className={`flex-1 text-center px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
+                  !isB2B
+                    ? "bg-b2b-primary text-white shadow-md"
+                    : "text-b2b-text-secondary"
+                }`}
+              >
+                Для игроков
+              </Link>
+            </div>
+
             <nav className="flex flex-col gap-4 mb-6">
               <button
                 onClick={() => scrollToSection("features")}
@@ -112,12 +156,6 @@ const B2BHeader = () => {
               >
                 Контакты
               </button>
-              <Link 
-                to="/players" 
-                className="text-b2b-text-secondary hover:text-b2b-primary transition-colors"
-              >
-                Для игроков →
-              </Link>
             </nav>
             <Button
               onClick={() => scrollToSection("contact")}

@@ -1,15 +1,14 @@
-import { UsersThree, ChartLineUp, DeviceMobile, Rocket, Lightning } from "@phosphor-icons/react";
+import { UsersThree, ChartLineUp, DeviceMobile, Rocket } from "@phosphor-icons/react";
 import type { Icon } from "@phosphor-icons/react";
 
 interface ComingSoonCardProps {
   icon: Icon;
   title: string;
   timing: string;
-  problem: string;
   what: string;
 }
 
-const ComingSoonCard = ({ icon: IconComponent, title, timing, problem, what }: ComingSoonCardProps) => {
+const ComingSoonCard = ({ icon: IconComponent, title, timing, what }: ComingSoonCardProps) => {
   return (
     <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 lg:p-8 border border-white/20 hover:bg-white/15 transition-all duration-300 hover:-translate-y-1">
       {/* Timing Badge */}
@@ -29,12 +28,6 @@ const ComingSoonCard = ({ icon: IconComponent, title, timing, problem, what }: C
         {title}
       </h3>
 
-      {/* Problem */}
-      <div className="flex items-start gap-2 text-white/70 text-sm mb-4">
-        <Lightning size={16} weight="duotone" className="text-cyan-300 shrink-0 mt-0.5" />
-        <span>{problem}</span>
-      </div>
-
       {/* What */}
       <div className="bg-white/10 rounded-lg px-4 py-3 flex items-start gap-2">
         <Rocket size={16} weight="duotone" className="text-cyan-300 shrink-0 mt-0.5" />
@@ -51,21 +44,18 @@ const comingSoonData: ComingSoonCardProps[] = [
     icon: UsersThree,
     title: "Открытые матчи",
     timing: "Март 2026",
-    problem: "Новички не могут найти партнёров",
     what: "Система подбора партнёров по уровню"
   },
   {
     icon: ChartLineUp,
     title: "Dashboard аналитики",
-    timing: "Q1 2026",
-    problem: "Не знаете кто в зоне риска",
+    timing: "Март 2026",
     what: "Визуализация + предиктивная аналитика"
   },
   {
     icon: DeviceMobile,
     title: "Мобильное приложение",
-    timing: "Q2 2026",
-    problem: "Нет нативного app опыта",
+    timing: "Март 2026",
     what: "iOS/Android для клиентов"
   }
 ];
