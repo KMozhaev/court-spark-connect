@@ -7,6 +7,7 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const isB2B = location.pathname === "/" || location.pathname === "/b2b";
   const isPlayers = location.pathname === "/players";
 
   useEffect(() => {
@@ -17,8 +18,8 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToWaitlist = () => {
-    const element = document.getElementById("waitlist");
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
@@ -34,18 +35,21 @@ const Header = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <Link to="/players" className="font-display font-extrabold text-2xl text-b2b-text-primary">
-            Courtoo
-          </Link>
+        {/* Desktop: CSS Grid with 3 columns */}
+        <div className="hidden md:grid grid-cols-[1fr_auto_1fr] items-center h-20">
+          {/* Left: Logo */}
+          <div className="justify-self-start">
+            <Link to={isPlayers ? "/players" : "/"} className="font-display font-extrabold text-2xl text-b2b-text-primary">
+              Courtoo
+            </Link>
+          </div>
 
-          {/* Toggle Switch - Same as B2B, centered */}
-          <div className="hidden md:flex items-center bg-slate-100 rounded-full p-1 border-2 border-slate-200">
+          {/* Center: Toggle Switch - always centered */}
+          <div className="justify-self-center flex items-center bg-slate-100 rounded-full p-1 border-2 border-slate-200">
             <Link
               to="/"
               className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
-                !isPlayers
+                isB2B
                   ? "bg-b2b-primary text-white shadow-md"
                   : "text-b2b-text-secondary hover:text-b2b-text-primary"
               }`}
@@ -64,20 +68,48 @@ const Header = () => {
             </Link>
           </div>
 
-          {/* Desktop CTA */}
-          <div className="hidden md:flex items-center gap-4">
+          {/* Right: Nav + CTA - visibility hidden on Players page to preserve layout */}
+          <div className={`justify-self-end flex items-center gap-8 ${isPlayers ? "invisible" : ""}`}>
+            <nav className="flex items-center gap-8">
+              <button
+                onClick={() => scrollToSection("features")}
+                className="text-sm font-medium text-b2b-text-secondary hover:text-b2b-primary transition-colors"
+              >
+                Возможности
+              </button>
+              <button
+                onClick={() => scrollToSection("pricing")}
+                className="text-sm font-medium text-b2b-text-secondary hover:text-b2b-primary transition-colors"
+              >
+                Тарифы
+              </button>
+              <button
+                onClick={() => scrollToSection("contact")}
+                className="text-sm font-medium text-b2b-text-secondary hover:text-b2b-primary transition-colors"
+              >
+                Контакты
+              </button>
+            </nav>
             <Button
-              onClick={scrollToWaitlist}
+              onClick={() => scrollToSection("contact")}
               className="bg-b2b-primary hover:bg-b2b-primary-hover text-white rounded-lg px-6 py-2.5 font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
             >
-              Записаться в лист ожидания
+              Оставить заявку
             </Button>
           </div>
+        </div>
+
+        {/* Mobile: Flex layout */}
+        <div className="md:hidden flex items-center justify-between h-20">
+          {/* Logo */}
+          <Link to={isPlayers ? "/players" : "/"} className="font-display font-extrabold text-2xl text-b2b-text-primary">
+            Courtoo
+          </Link>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 text-b2b-text-primary"
+            className="p-2 text-b2b-text-primary"
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? (
@@ -95,8 +127,9 @@ const Header = () => {
             <div className="flex items-center bg-slate-100 rounded-full p-1 mb-6 border-2 border-slate-200">
               <Link
                 to="/"
+                onClick={() => setIsMobileMenuOpen(false)}
                 className={`flex-1 text-center px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
-                  !isPlayers
+                  isB2B
                     ? "bg-b2b-primary text-white shadow-md"
                     : "text-b2b-text-secondary"
                 }`}
@@ -105,6 +138,7 @@ const Header = () => {
               </Link>
               <Link
                 to="/players"
+                onClick={() => setIsMobileMenuOpen(false)}
                 className={`flex-1 text-center px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
                   isPlayers
                     ? "bg-b2b-primary text-white shadow-md"
@@ -115,11 +149,42 @@ const Header = () => {
               </Link>
             </div>
 
+            {/* Nav links - only show on B2B */}
+            {isB2B && (
+              <nav className="flex flex-col gap-4 mb-6">
+                <button
+                  onClick={() => scrollToSection("features")}
+                  className="text-left text-b2b-text-secondary hover:text-b2b-primary transition-colors"
+                >
+                  Возможности
+                </button>
+                <button
+                  onClick={() => scrollToSection("pricing")}
+                  className="text-left text-b2b-text-secondary hover:text-b2b-primary transition-colors"
+                >
+                  Тарифы
+                </button>
+                <button
+                  onClick={() => scrollToSection("contact")}
+                  className="text-left text-b2b-text-secondary hover:text-b2b-primary transition-colors"
+                >
+                  Контакты
+                </button>
+              </nav>
+            )}
+
+            {/* CTA Button */}
             <Button
-              onClick={scrollToWaitlist}
+              onClick={() => {
+                if (isPlayers) {
+                  scrollToSection("waitlist");
+                } else {
+                  scrollToSection("contact");
+                }
+              }}
               className="w-full bg-b2b-primary hover:bg-b2b-primary-hover text-white rounded-lg py-3 font-semibold"
             >
-              Записаться в лист ожидания
+              {isPlayers ? "Записаться в лист ожидания" : "Оставить заявку"}
             </Button>
           </div>
         )}
