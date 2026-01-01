@@ -22,9 +22,9 @@ const FeatureSection = ({
   return (
     <section className={`py-20 lg:py-28 ${bgLight ? "bg-b2b-background-secondary" : "bg-b2b-background"}`}>
       <div className="max-w-7xl mx-auto px-6">
-        <div className={`grid lg:grid-cols-2 gap-12 lg:gap-20 items-start ${reversed ? "lg:grid-flow-dense" : ""}`}>
+        <div className={`grid lg:grid-cols-2 gap-12 lg:gap-20 ${reversed ? "lg:grid-flow-dense" : ""}`}>
           {/* Phone Mockup - Always first on mobile */}
-          <div className={`flex justify-center ${reversed ? "lg:col-start-1" : "lg:col-start-2"} order-1`}>
+          <div className={`flex justify-center lg:justify-start ${reversed ? "lg:col-start-1 lg:justify-end" : "lg:col-start-2"} order-1`}>
             <div className="phone-float" style={{ perspective: "1000px" }}>
               <div className="phone-mockup w-[280px] md:w-[320px]">
                 <div className="phone-screen aspect-[9/19.5]">
@@ -38,8 +38,8 @@ const FeatureSection = ({
             </div>
           </div>
 
-          {/* Content */}
-          <div className={`${reversed ? "lg:col-start-2" : "lg:col-start-1"} order-2 text-center lg:text-left lg:pt-8`}>
+          {/* Content - aligned to top of phone */}
+          <div className={`${reversed ? "lg:col-start-2" : "lg:col-start-1"} order-2 text-center lg:text-left flex flex-col justify-start`}>
             {/* Title */}
             <h2 className="font-display font-extrabold text-3xl md:text-4xl lg:text-5xl text-b2b-text-primary mb-4">
               {title}
