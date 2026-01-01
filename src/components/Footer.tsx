@@ -11,9 +11,7 @@ const Footer = () => {
             <Link to="/players" className="font-display font-extrabold text-2xl block mb-2">
               Courtoo
             </Link>
-            <p className="text-slate-400">
-              Играй в падел и теннис без лишних проблем
-            </p>
+            <p className="text-slate-400">Играй в падел и теннис без лишних проблем</p>
           </div>
 
           {/* Contact Info */}
@@ -46,9 +44,7 @@ const Footer = () => {
 
         {/* Copyright */}
         <div className="mt-8 pt-8 border-t border-slate-800 text-center">
-          <p className="text-slate-500 text-sm">
-            © 2025 Courtoo. Все права защищены.
-          </p>
+          <p className="text-slate-500 text-sm">© 2026 Courtoo. Все права защищены.</p>
         </div>
       </div>
     </footer>
