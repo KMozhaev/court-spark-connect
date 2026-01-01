@@ -22,7 +22,7 @@ const FeatureSection = ({
   return (
     <section className={`py-20 lg:py-28 ${bgLight ? "bg-b2b-background-secondary" : "bg-b2b-background"}`}>
       <div className="max-w-7xl mx-auto px-6">
-        <div className={`grid lg:grid-cols-2 gap-12 lg:gap-20 ${reversed ? "lg:grid-flow-dense" : ""}`}>
+        <div className={`grid lg:grid-cols-2 gap-12 lg:gap-20 items-start ${reversed ? "lg:grid-flow-dense" : ""}`}>
           {/* Phone Mockup - Always first on mobile */}
           <div className={`flex justify-center lg:justify-start ${reversed ? "lg:col-start-1 lg:justify-end" : "lg:col-start-2"} order-1`}>
             <div className="phone-float" style={{ perspective: "1000px" }}>
