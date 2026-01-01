@@ -33,22 +33,22 @@ const B2BFooter = () => {
             <h4 className="font-display font-bold text-white mb-4">Навигация</h4>
             <ul className="space-y-3">
               <li>
-                <a href="#features" className="text-slate-400 hover:text-white transition-colors">
+                <a href="#features" className="text-slate-400 hover:text-white transition-colors cursor-pointer">
                   Возможности
                 </a>
               </li>
               <li>
-                <a href="#pricing" className="text-slate-400 hover:text-white transition-colors">
+                <a href="#pricing" className="text-slate-400 hover:text-white transition-colors cursor-pointer">
                   Тарифы
                 </a>
               </li>
               <li>
-                <a href="#contact" className="text-slate-400 hover:text-white transition-colors">
+                <a href="#contact" className="text-slate-400 hover:text-white transition-colors cursor-pointer">
                   Контакты
                 </a>
               </li>
               <li>
-                <Link to="/players" className="text-slate-400 hover:text-white transition-colors">
+                <Link to="/players" className="text-slate-400 hover:text-white transition-colors cursor-pointer">
                   Для игроков
                 </Link>
               </li>
