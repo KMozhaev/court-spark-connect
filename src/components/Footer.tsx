@@ -44,11 +44,20 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Copyright */}
-        <div className="mt-8 pt-8 border-t border-slate-800 text-center">
+        {/* Bottom Bar */}
+        <div className="mt-8 pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-slate-500 text-sm">
             © 2025 Courtoo. Все права защищены.
           </p>
+          <div className="flex items-center gap-2 text-sm text-slate-500">
+            <a href="#" className="hover:text-white transition-colors">
+              Политика конфиденциальности
+            </a>
+            <span>•</span>
+            <a href="#" className="hover:text-white transition-colors">
+              Пользовательское соглашение
+            </a>
+          </div>
         </div>
       </div>
     </footer>

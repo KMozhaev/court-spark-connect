@@ -68,34 +68,48 @@ const Header = () => {
             </Link>
           </div>
 
-          {/* Right: Nav + CTA - visibility hidden on Players page to preserve layout */}
-          <div className={`justify-self-end flex items-center gap-8 ${isPlayers ? "invisible" : ""}`}>
-            <nav className="flex items-center gap-8">
-              <button
-                onClick={() => scrollToSection("features")}
-                className="text-sm font-medium text-b2b-text-secondary hover:text-b2b-primary transition-colors"
+          {/* Right: Nav + CTA */}
+          <div className="justify-self-end flex items-center gap-8">
+            {/* B2B: Nav links + CTA */}
+            {isB2B && (
+              <>
+                <nav className="flex items-center gap-8">
+                  <button
+                    onClick={() => scrollToSection("features")}
+                    className="text-sm font-medium text-b2b-text-secondary hover:text-b2b-primary transition-colors"
+                  >
+                    Возможности
+                  </button>
+                  <button
+                    onClick={() => scrollToSection("pricing")}
+                    className="text-sm font-medium text-b2b-text-secondary hover:text-b2b-primary transition-colors"
+                  >
+                    Тарифы
+                  </button>
+                  <button
+                    onClick={() => scrollToSection("contact")}
+                    className="text-sm font-medium text-b2b-text-secondary hover:text-b2b-primary transition-colors"
+                  >
+                    Контакты
+                  </button>
+                </nav>
+                <Button
+                  onClick={() => scrollToSection("contact")}
+                  className="bg-b2b-primary hover:bg-b2b-primary-hover text-white rounded-lg px-6 py-2.5 font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
+                >
+                  Оставить заявку
+                </Button>
+              </>
+            )}
+            {/* B2C: Waitlist CTA only */}
+            {isPlayers && (
+              <Button
+                onClick={() => scrollToSection("waitlist")}
+                className="bg-b2c-neon hover:bg-b2c-neon-hover text-slate-900 rounded-full px-6 py-2.5 font-bold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-b2c-neon/30"
               >
-                Возможности
-              </button>
-              <button
-                onClick={() => scrollToSection("pricing")}
-                className="text-sm font-medium text-b2b-text-secondary hover:text-b2b-primary transition-colors"
-              >
-                Тарифы
-              </button>
-              <button
-                onClick={() => scrollToSection("contact")}
-                className="text-sm font-medium text-b2b-text-secondary hover:text-b2b-primary transition-colors"
-              >
-                Контакты
-              </button>
-            </nav>
-            <Button
-              onClick={() => scrollToSection("contact")}
-              className="bg-b2b-primary hover:bg-b2b-primary-hover text-white rounded-lg px-6 py-2.5 font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
-            >
-              Оставить заявку
-            </Button>
+                Записаться в лист ожидания
+              </Button>
+            )}
           </div>
         </div>
 
