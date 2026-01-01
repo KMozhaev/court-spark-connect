@@ -91,12 +91,12 @@ const B2BFooter = () => {
         <div className="border-t border-slate-800 pt-8 mb-8">
           <h5 className="text-xs text-slate-500 mb-4 uppercase tracking-wider">Источники</h5>
           <div className="grid md:grid-cols-2 gap-2 text-xs text-slate-500">
-            <p>¹ Средняя загрузка кортов по данным индустрии</p>
-            <p>² Harvard Business Review — стоимость привлечения vs удержания</p>
-            <p>³ Статистика лучших клубов по удержанию клиентов</p>
-            <p>⁴ Playtomic Global Padel Report 2025</p>
-            <p>⁵ Средний LTV клиента падел-клуба</p>
-            <p>⁶ Исследование retention в ракеточных видах спорта</p>
+            <p>¹ gitnux.org/tennis-participation-statistics (40% lack of partner)</p>
+            <p>² glofox.com/retention-statistics (7-9x CAC vs retention)</p>
+            <p>³ hbr.org/value-of-keeping-customers (+25-95% profit)</p>
+            <p>⁴ playtomic.com/global-padel-report (92% return rate)</p>
+            <p>⁵ financialmodelslab.com/tennis-club-kpi (65% utilization target)</p>
+            <p>⁶ usta.com/participation-report-2025 (25.7M players)</p>
           </div>
         </div>
 

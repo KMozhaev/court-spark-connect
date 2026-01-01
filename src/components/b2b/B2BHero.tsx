@@ -1,23 +1,69 @@
-import { Check, ChartLineUp, Users, Target, ArrowCircleRight } from "@phosphor-icons/react";
+import { Check, ChartLineUp, Users, Target, ArrowCircleRight, TrendDown, TrendUp, UserCheck } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
+import { ReactNode } from "react";
 
 interface StatCardProps {
+  icon: ReactNode;
   value: string;
   label: string;
+  sublabel: string;
   source: string;
+  variant: "danger" | "warning" | "success" | "primary";
 }
 
-const StatCard = ({ value, label, source }: StatCardProps) => (
-  <div className="p-6 bg-white border border-b2b-border rounded-xl hover:border-b2b-primary hover:shadow-md transition-all duration-300">
-    <div className="text-3xl md:text-4xl font-display font-bold text-b2b-primary mb-2">
-      {value}
-      <sup className="text-sm text-b2b-text-muted ml-1">{source}</sup>
+const variantStyles = {
+  danger: {
+    bg: "bg-red-50",
+    border: "border-red-200 hover:border-red-400",
+    iconBg: "bg-red-100",
+    iconColor: "text-red-500",
+    valueColor: "text-red-600",
+  },
+  warning: {
+    bg: "bg-amber-50",
+    border: "border-amber-200 hover:border-amber-400",
+    iconBg: "bg-amber-100",
+    iconColor: "text-amber-500",
+    valueColor: "text-amber-600",
+  },
+  success: {
+    bg: "bg-green-50",
+    border: "border-green-200 hover:border-green-400",
+    iconBg: "bg-green-100",
+    iconColor: "text-green-500",
+    valueColor: "text-green-600",
+  },
+  primary: {
+    bg: "bg-blue-50",
+    border: "border-blue-200 hover:border-blue-400",
+    iconBg: "bg-blue-100",
+    iconColor: "text-blue-500",
+    valueColor: "text-blue-600",
+  },
+};
+
+const StatCard = ({ icon, value, label, sublabel, source, variant }: StatCardProps) => {
+  const styles = variantStyles[variant];
+  return (
+    <div className={`p-5 ${styles.bg} border ${styles.border} rounded-xl hover:shadow-md transition-all duration-300`}>
+      <div className="flex items-start gap-3 mb-3">
+        <div className={`w-10 h-10 rounded-lg ${styles.iconBg} flex items-center justify-center shrink-0`}>
+          <span className={styles.iconColor}>{icon}</span>
+        </div>
+        <div className={`text-2xl md:text-3xl font-display font-bold ${styles.valueColor}`}>
+          {value}
+          <sup className="text-xs text-b2b-text-muted ml-1">{source}</sup>
+        </div>
+      </div>
+      <div className="text-sm font-medium text-b2b-text-primary mb-1">
+        {label}
+      </div>
+      <div className="text-xs text-b2b-text-muted">
+        {sublabel}
+      </div>
     </div>
-    <div className="text-sm text-b2b-text-secondary">
-      {label}
-    </div>
-  </div>
-);
+  );
+};
 
 const B2BHero = () => {
   const scrollToForm = () => {
@@ -52,24 +98,36 @@ const B2BHero = () => {
             {/* Stats Grid */}
             <div className="grid grid-cols-2 gap-4 mb-8">
               <StatCard 
-                value="60%"
-                label="средняя загрузка кортов"
+                icon={<Users size={22} weight="duotone" />}
+                value="40%"
+                label="бросают игру из-за отсутствия партнёра"
+                sublabel="Помогите им найти партнёров — они останутся"
                 source="¹"
+                variant="danger"
               />
               <StatCard 
-                value="5-25x"
-                label="привлечь нового дороже чем удержать"
+                icon={<TrendDown size={22} weight="duotone" />}
+                value="В 7-9 раз"
+                label="дороже привлечь нового клиента"
+                sublabel="чем удержать существующего"
                 source="²"
+                variant="warning"
               />
               <StatCard 
-                value="80%+"
-                label="лучшие клубы удерживают клиентов"
+                icon={<TrendUp size={22} weight="duotone" />}
+                value="+25-95%"
+                label="рост прибыли при удержании +5%"
+                sublabel="Фокус на существующих = больше прибыли"
                 source="³"
+                variant="success"
               />
               <StatCard 
+                icon={<UserCheck size={22} weight="duotone" />}
                 value="92%"
-                label="возвращаются если нашли партнёра"
+                label="игроков возвращаются в падел"
+                sublabel="после первого раза — создайте привычку"
                 source="⁴"
+                variant="primary"
               />
             </div>
 
@@ -77,7 +135,7 @@ const B2BHero = () => {
             <div className="flex flex-col sm:flex-row gap-4 mb-6">
               <Button
                 onClick={scrollToForm}
-                className="bg-b2b-primary hover:bg-b2b-primary-hover text-white rounded-lg px-8 py-4 text-lg font-semibold transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                className="bg-b2b-primary hover:bg-b2b-primary-hover text-white rounded-lg px-10 py-4 text-base font-semibold transition-all duration-300 hover:-translate-y-1 hover:shadow-xl min-h-[56px]"
               >
                 Оставить заявку на демонстрацию
                 <ArrowCircleRight size={24} className="ml-2" weight="bold" />
@@ -85,7 +143,7 @@ const B2BHero = () => {
               <Button
                 onClick={scrollToFeatures}
                 variant="outline"
-                className="border-2 border-b2b-primary text-b2b-primary hover:bg-b2b-primary hover:text-white rounded-lg px-8 py-4 text-lg font-semibold transition-all duration-300"
+                className="border-2 border-b2b-primary text-b2b-primary hover:bg-b2b-primary hover:text-white rounded-lg px-10 py-4 text-base font-semibold transition-all duration-300 min-h-[56px]"
               >
                 Посмотреть как работает
               </Button>
