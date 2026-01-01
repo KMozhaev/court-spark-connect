@@ -56,7 +56,7 @@ const B2BContactForm = () => {
 
   if (isSubmitted) {
     return (
-      <section id="contact" className="py-20 lg:py-28 bg-slate-50">
+      <section id="contact" className="py-20 lg:py-28 bg-slate-100/50">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <div className="w-20 h-20 rounded-full bg-b2b-success/10 flex items-center justify-center mx-auto mb-6">
             <CheckCircle size={48} weight="duotone" className="text-b2b-success" />
@@ -80,7 +80,7 @@ const B2BContactForm = () => {
   }
 
   return (
-    <section id="contact" className="py-20 lg:py-28 bg-slate-50">
+    <section id="contact" className="py-20 lg:py-28 bg-slate-100/50">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
           {/* Left Column - Form */}
@@ -104,7 +104,7 @@ const B2BContactForm = () => {
                   value={formData.phone}
                   onChange={handleChange}
                   placeholder="+7 (___) ___-__-__"
-                  className="border-b2b-border focus:border-b2b-primary"
+                  className="border-b2b-border focus:border-b2b-primary bg-white/60"
                   maxLength={20}
                   required
                 />
@@ -120,7 +120,7 @@ const B2BContactForm = () => {
                   value={formData.contactName}
                   onChange={handleChange}
                   placeholder="Иван Иванов"
-                  className="border-b2b-border focus:border-b2b-primary"
+                  className="border-b2b-border focus:border-b2b-primary bg-white/60"
                   maxLength={100}
                 />
               </div>
@@ -135,7 +135,7 @@ const B2BContactForm = () => {
                   value={formData.message}
                   onChange={handleChange}
                   placeholder="Расскажите о ваших задачах или вопросах..."
-                  className="border-b2b-border focus:border-b2b-primary min-h-[100px] resize-none"
+                  className="border-b2b-border focus:border-b2b-primary min-h-[100px] resize-none bg-white/60"
                   maxLength={1000}
                 />
               </div>
@@ -174,7 +174,7 @@ const B2BContactForm = () => {
               <div className="space-y-4">
                 <a 
                   href="mailto:office@courtoo.ru"
-                  className="flex items-center gap-4 p-4 bg-b2b-surface rounded-xl border border-b2b-border hover:border-b2b-primary transition-colors group"
+                  className="flex items-center gap-4 p-4 bg-slate-50 rounded-xl border border-b2b-border hover:border-b2b-primary transition-colors group"
                 >
                   <div className="w-12 h-12 rounded-xl bg-b2b-primary/10 flex items-center justify-center group-hover:bg-b2b-primary/20 transition-colors">
                     <Envelope size={24} weight="duotone" className="text-b2b-primary" />
@@ -187,7 +187,7 @@ const B2BContactForm = () => {
 
                 <a 
                   href="tel:+79150954686"
-                  className="flex items-center gap-4 p-4 bg-b2b-surface rounded-xl border border-b2b-border hover:border-b2b-primary transition-colors group"
+                  className="flex items-center gap-4 p-4 bg-slate-50 rounded-xl border border-b2b-border hover:border-b2b-primary transition-colors group"
                 >
                   <div className="w-12 h-12 rounded-xl bg-b2b-primary/10 flex items-center justify-center group-hover:bg-b2b-primary/20 transition-colors">
                     <Phone size={24} weight="duotone" className="text-b2b-primary" />
@@ -202,7 +202,7 @@ const B2BContactForm = () => {
                   href="https://t.me/kirillmozhaev"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-4 p-4 bg-b2b-surface rounded-xl border border-b2b-border hover:border-b2b-primary transition-colors group"
+                  className="flex items-center gap-4 p-4 bg-slate-50 rounded-xl border border-b2b-border hover:border-b2b-primary transition-colors group"
                 >
                   <div className="w-12 h-12 rounded-xl bg-b2b-primary/10 flex items-center justify-center group-hover:bg-b2b-primary/20 transition-colors">
                     <TelegramLogo size={24} weight="duotone" className="text-b2b-primary" />

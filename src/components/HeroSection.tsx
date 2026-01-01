@@ -25,31 +25,31 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="min-h-screen pt-20 relative overflow-hidden bg-gradient-to-b from-background to-[#E8EAF6]">
+    <section className="min-h-screen pt-20 relative overflow-hidden bg-b2b-surface">
       {/* Decorative gradient circle */}
-      <div className="absolute top-20 right-0 w-[600px] h-[600px] bg-gradient-to-br from-primary/10 to-accent/10 rounded-full blur-3xl animate-float opacity-60" />
+      <div className="absolute top-20 right-0 w-[600px] h-[600px] bg-gradient-to-br from-b2b-primary/10 to-cyan/10 rounded-full blur-3xl animate-float opacity-60" />
       
-      <div className="container mx-auto px-4 py-12 lg:py-20">
+      <div className="max-w-7xl mx-auto px-6 py-12 lg:py-20">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left Content */}
           <div className="order-2 lg:order-1 text-center lg:text-left">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full mb-6 animate-fade-in">
-              <TennisBall size={20} weight="duotone" className="text-primary" />
-              <span className="text-sm font-semibold text-primary">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-b2b-primary/10 rounded-full mb-6 animate-fade-in">
+              <TennisBall size={20} weight="duotone" className="text-b2b-primary" />
+              <span className="text-sm font-semibold text-b2b-primary">
                 Запуск в марте 2025
               </span>
             </div>
 
             {/* Headline */}
-            <h1 className="font-display font-extrabold text-4xl md:text-5xl lg:text-display-lg text-foreground mb-6 animate-fade-in" style={{ animationDelay: "0.1s" }}>
+            <h1 className="font-display font-extrabold text-4xl md:text-5xl lg:text-6xl text-b2b-text-primary mb-6 animate-fade-in" style={{ animationDelay: "0.1s" }}>
               Не можешь найти{" "}
-              <span className="text-primary">партнера</span>{" "}
+              <span className="text-b2b-primary">партнера</span>{" "}
               для игры?
             </h1>
 
             {/* Subtext */}
-            <p className="text-lg text-muted-foreground max-w-xl mx-auto lg:mx-0 mb-8 animate-fade-in" style={{ animationDelay: "0.2s" }}>
+            <p className="text-lg text-b2b-text-secondary max-w-xl mx-auto lg:mx-0 mb-8 animate-fade-in" style={{ animationDelay: "0.2s" }}>
               Courtoo объединяет игроков в падел и теннис, упрощает бронирование кортов и помогает экономить на аренде.
             </p>
 
@@ -57,7 +57,7 @@ const HeroSection = () => {
             <div className="animate-fade-in" style={{ animationDelay: "0.3s" }}>
               <Button
                 onClick={scrollToWaitlist}
-                className="bg-primary hover:bg-primary-hover text-primary-foreground rounded-full px-8 py-6 text-lg font-semibold transition-all duration-300 hover:-translate-y-1 hover:shadow-primary-glow group"
+                className="bg-b2b-primary hover:bg-b2b-primary-hover text-white rounded-lg px-8 py-6 text-lg font-semibold transition-all duration-300 hover:-translate-y-1 hover:shadow-lg group"
               >
                 Получить ранний доступ
                 <ArrowRight size={20} weight="bold" className="ml-2 group-hover:translate-x-1 transition-transform" />
@@ -92,8 +92,8 @@ const HeroSection = () => {
                     onClick={() => setCurrentSlide(index)}
                     className={`w-2 h-2 rounded-full transition-all duration-300 ${
                       index === currentSlide
-                        ? "bg-primary w-6"
-                        : "bg-border hover:bg-muted-foreground"
+                        ? "bg-b2b-primary w-6"
+                        : "bg-b2b-border hover:bg-b2b-text-muted"
                     }`}
                     aria-label={`Slide ${index + 1}`}
                   />
