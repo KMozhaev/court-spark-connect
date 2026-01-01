@@ -20,10 +20,10 @@ const problems = [
 
 const ProblemSection = () => {
   return (
-    <section className="py-20 lg:py-28 bg-slate-50">
+    <section className="py-20 lg:py-28 bg-b2b-background">
       <div className="max-w-7xl mx-auto px-6">
         {/* Section Title */}
-        <h2 className="font-display font-extrabold text-3xl md:text-4xl lg:text-5xl text-slate-900 text-center mb-12 lg:mb-16">
+        <h2 className="font-display font-extrabold text-3xl md:text-4xl lg:text-5xl text-b2b-text-primary text-center mb-12 lg:mb-16">
           Знакомые проблемы?
         </h2>
 
@@ -32,7 +32,7 @@ const ProblemSection = () => {
           {problems.map((problem, index) => (
             <div
               key={index}
-              className="group bg-white rounded-2xl p-8 border border-slate-200 shadow-sm hover:shadow-lg hover:border-cyan-200 transition-all duration-300"
+              className="group bg-b2b-background-secondary rounded-2xl p-8 border border-b2b-border shadow-sm hover:shadow-lg hover:border-b2b-primary/30 transition-all duration-300"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* Icon */}
@@ -40,17 +40,17 @@ const ProblemSection = () => {
                 <problem.icon
                   size={56}
                   weight="duotone"
-                  className="text-cyan-600"
+                  className="text-b2b-primary"
                 />
               </div>
 
               {/* Title */}
-              <h3 className="font-display font-bold text-xl mb-3 text-slate-900">
+              <h3 className="font-display font-bold text-xl mb-3 text-b2b-text-primary">
                 {problem.title}
               </h3>
 
               {/* Description */}
-              <p className="text-slate-600 leading-relaxed">
+              <p className="text-b2b-text-secondary leading-relaxed">
                 {problem.description}
               </p>
             </div>

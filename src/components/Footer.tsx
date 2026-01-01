@@ -20,14 +20,14 @@ const Footer = () => {
           <div className="flex items-center gap-6">
             <a
               href="mailto:office@courtoo.ru"
-              className="flex items-center gap-2 text-slate-400 hover:text-cyan-400 transition-colors"
+              className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors"
             >
               <Envelope size={20} weight="duotone" />
               <span className="hidden sm:inline">office@courtoo.ru</span>
             </a>
             <a
               href="tel:+79150954686"
-              className="flex items-center gap-2 text-slate-400 hover:text-cyan-400 transition-colors"
+              className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors"
             >
               <Phone size={20} weight="duotone" />
               <span className="hidden sm:inline">+7 915 095-46-86</span>
@@ -36,7 +36,7 @@ const Footer = () => {
               href="https://t.me/kirillmozhaev"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-slate-400 hover:text-cyan-400 transition-colors"
+              className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors"
               title="Telegram"
             >
               <TelegramLogo size={20} weight="duotone" />
