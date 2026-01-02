@@ -4,7 +4,7 @@ import B2BHero from "@/components/b2b/B2BHero";
 import B2BCurrentSolutions from "@/components/b2b/B2BCurrentSolutions";
 import B2BSolutionTabs from "@/components/b2b/B2BSolutionTabs";
 import B2BScenarios from "@/components/b2b/B2BScenarios";
-import B2BComparisonTable from "@/components/b2b/B2BComparisonTable";
+
 import B2BIndustryInsights from "@/components/b2b/B2BIndustryInsights";
 import B2BOpenMatch from "@/components/b2b/B2BOpenMatch";
 import B2BPricing from "@/components/b2b/B2BPricing";
@@ -46,10 +46,7 @@ const B2B = () => {
           {/* 4. Трансформация - Было/Стало */}
           <B2BScenarios />
 
-          {/* 5. Сравнение с конкурентами */}
-          <B2BComparisonTable />
-
-          {/* 6. Социальное доказательство - кейсы */}
+          {/* 5. Социальное доказательство - кейсы */}
           <B2BIndustryInsights />
 
           {/* 7. Будущее - Открытые матчи (март 2026) */}
