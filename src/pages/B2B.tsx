@@ -4,6 +4,7 @@ import B2BHero from "@/components/b2b/B2BHero";
 import B2BCurrentSolutions from "@/components/b2b/B2BCurrentSolutions";
 import B2BComingSoon from "@/components/b2b/B2BComingSoon";
 import B2BSolutionTabs from "@/components/b2b/B2BSolutionTabs";
+import B2BOpenMatch from "@/components/b2b/B2BOpenMatch";
 import B2BIndustryInsights from "@/components/b2b/B2BIndustryInsights";
 import B2BComparisonTable from "@/components/b2b/B2BComparisonTable";
 import B2BPricing from "@/components/b2b/B2BPricing";
@@ -37,6 +38,7 @@ const B2B = () => {
           <section id="features">
             <B2BCurrentSolutions />
             <B2BSolutionTabs />
+            <B2BOpenMatch />
             <B2BComingSoon />
           </section>
 
