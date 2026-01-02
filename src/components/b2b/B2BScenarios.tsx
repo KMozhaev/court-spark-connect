@@ -71,88 +71,70 @@ const scenarios = [
 
 const B2BScenarios = () => {
   return (
-    <section className="py-16 md:py-24 bg-b2b-background">
+    <section className="py-12 md:py-16 bg-b2b-background">
       <div className="container mx-auto px-4">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
-          <span className="inline-block px-4 py-1.5 bg-b2b-primary/10 text-b2b-primary rounded-full text-sm font-medium mb-4">
+        <div className="text-center max-w-3xl mx-auto mb-8 md:mb-10">
+          <span className="inline-block px-3 py-1 bg-b2b-primary/10 text-b2b-primary rounded-full text-sm font-medium mb-3">
             Трансформация
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-b2b-text-primary mb-4">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-b2b-text-primary mb-2">
             Как меняется работа клуба
           </h2>
-          <p className="text-b2b-text-muted text-lg md:text-xl">
+          <p className="text-b2b-text-muted text-base md:text-lg">
             Реальные сценарии до и после внедрения Courtoo
           </p>
         </div>
 
-        {/* Scenarios */}
-        <div className="space-y-8 md:space-y-12">
+        {/* Scenarios - horizontal on desktop */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
           {scenarios.map((scenario) => (
             <div
               key={scenario.id}
-              className="bg-b2b-background-secondary border border-b2b-border rounded-2xl p-6 md:p-8 overflow-hidden"
+              className="bg-b2b-background-secondary border border-b2b-border rounded-xl p-4 md:p-5"
             >
               {/* Scenario Title */}
-              <h3 className="text-xl md:text-2xl font-bold text-b2b-text-primary mb-6 text-center">
+              <h3 className="text-lg font-bold text-b2b-text-primary mb-4 text-center">
                 {scenario.title}
               </h3>
 
-              <div className="grid grid-cols-1 lg:grid-cols-[1fr,auto,1fr] gap-6 lg:gap-4 items-stretch">
+              <div className="space-y-3">
                 {/* Before */}
-                <div className="bg-b2b-danger/5 border border-b2b-danger/20 rounded-xl p-5 md:p-6">
-                  <div className="flex items-center gap-2 mb-4">
-                    <div className="w-8 h-8 rounded-full bg-b2b-danger/10 flex items-center justify-center">
-                      <X className="w-4 h-4 text-b2b-danger" />
+                <div className="bg-b2b-danger/5 border border-b2b-danger/20 rounded-lg p-3">
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="w-6 h-6 rounded-full bg-b2b-danger/10 flex items-center justify-center">
+                      <X className="w-3 h-3 text-b2b-danger" />
                     </div>
-                    <span className="font-semibold text-b2b-danger">{scenario.before.title}</span>
+                    <span className="text-sm font-semibold text-b2b-danger">{scenario.before.title}</span>
+                    <span className="ml-auto text-xs font-medium text-b2b-danger">{scenario.before.time}</span>
                   </div>
-                  <ul className="space-y-3 mb-4">
+                  <ul className="space-y-1">
                     {scenario.before.items.map((item, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-sm text-b2b-text-secondary">
-                        <span className="text-b2b-danger mt-0.5">•</span>
+                      <li key={idx} className="flex items-start gap-1.5 text-xs text-b2b-text-secondary">
+                        <span className="text-b2b-danger">•</span>
                         {item}
                       </li>
                     ))}
                   </ul>
-                  <div className="pt-4 border-t border-b2b-danger/20">
-                    <span className="text-sm text-b2b-text-muted">Результат:</span>
-                    <p className="font-semibold text-b2b-danger">{scenario.before.time}</p>
-                  </div>
-                </div>
-
-                {/* Arrow */}
-                <div className="hidden lg:flex items-center justify-center">
-                  <div className="w-12 h-12 rounded-full bg-b2b-primary/10 flex items-center justify-center">
-                    <ArrowRight className="w-6 h-6 text-b2b-primary" />
-                  </div>
-                </div>
-                <div className="lg:hidden flex justify-center">
-                  <div className="w-10 h-10 rounded-full bg-b2b-primary/10 flex items-center justify-center rotate-90">
-                    <ArrowRight className="w-5 h-5 text-b2b-primary" />
-                  </div>
                 </div>
 
                 {/* After */}
-                <div className="bg-b2b-success/5 border border-b2b-success/20 rounded-xl p-5 md:p-6">
-                  <div className="flex items-center gap-2 mb-4">
-                    <div className="w-8 h-8 rounded-full bg-b2b-success/10 flex items-center justify-center">
-                      <Check className="w-4 h-4 text-b2b-success" />
+                <div className="bg-b2b-success/5 border border-b2b-success/20 rounded-lg p-3">
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="w-6 h-6 rounded-full bg-b2b-success/10 flex items-center justify-center">
+                      <Check className="w-3 h-3 text-b2b-success" />
                     </div>
-                    <span className="font-semibold text-b2b-success">{scenario.after.title}</span>
+                    <span className="text-sm font-semibold text-b2b-success">{scenario.after.title}</span>
+                    <span className="ml-auto text-xs font-medium text-b2b-success">{scenario.after.time}</span>
                   </div>
-                  <ul className="space-y-3 mb-4">
+                  <ul className="space-y-1">
                     {scenario.after.items.map((item, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-sm text-b2b-text-secondary">
-                        <Check className="w-4 h-4 text-b2b-success mt-0.5 flex-shrink-0" />
+                      <li key={idx} className="flex items-start gap-1.5 text-xs text-b2b-text-secondary">
+                        <Check className="w-3 h-3 text-b2b-success mt-0.5 flex-shrink-0" />
                         {item}
                       </li>
                     ))}
                   </ul>
-                  <div className="pt-4 border-t border-b2b-success/20">
-                    <span className="text-sm text-b2b-text-muted">Результат:</span>
-                    <p className="font-semibold text-b2b-success">{scenario.after.time}</p>
-                  </div>
                 </div>
               </div>
             </div>
