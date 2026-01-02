@@ -2,7 +2,6 @@ import { Helmet } from "react-helmet";
 import B2BHeader from "@/components/b2b/B2BHeader";
 import B2BHero from "@/components/b2b/B2BHero";
 import B2BCurrentSolutions from "@/components/b2b/B2BCurrentSolutions";
-import B2BComingSoon from "@/components/b2b/B2BComingSoon";
 import B2BSolutionTabs from "@/components/b2b/B2BSolutionTabs";
 import B2BOpenMatch from "@/components/b2b/B2BOpenMatch";
 import B2BIndustryInsights from "@/components/b2b/B2BIndustryInsights";
@@ -39,7 +38,6 @@ const B2B = () => {
             <B2BCurrentSolutions />
             <B2BSolutionTabs />
             <B2BOpenMatch />
-            <B2BComingSoon />
           </section>
 
           {/* Industry Insights */}

@@ -1,4 +1,4 @@
-import { Users, UserPlus, Bell, Calendar, TrendingUp, Clock, Target, Repeat } from "lucide-react";
+import { Users, UserPlus, Bell, Calendar, TrendingUp, Clock, Target, Repeat, Sparkles } from "lucide-react";
 
 const steps = [
   {
@@ -56,9 +56,14 @@ const B2BOpenMatch = () => {
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
-          <span className="inline-block px-4 py-1.5 bg-b2b-primary/10 text-b2b-primary rounded-full text-sm font-medium mb-4">
-            Уникальная функция
-          </span>
+          {/* Coming Soon Badge */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-b2b-primary/10 to-b2b-success/10 border border-b2b-primary/20 rounded-full mb-6">
+            <Sparkles className="w-4 h-4 text-b2b-primary" />
+            <span className="text-sm font-semibold text-b2b-primary">Скоро</span>
+            <span className="text-sm text-b2b-text-secondary">•</span>
+            <span className="text-sm font-medium text-b2b-text-primary">Март 2026</span>
+          </div>
+          
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-b2b-text-primary mb-4">
             Открытые матчи
           </h2>
@@ -110,7 +115,7 @@ const B2BOpenMatch = () => {
         {/* Results */}
         <div className="bg-b2b-background-secondary border border-b2b-border rounded-2xl p-8 md:p-10">
           <h3 className="text-xl font-semibold text-b2b-text-primary text-center mb-8">
-            Результаты внедрения
+            Ожидаемые результаты
           </h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
             {results.map((result, index) => (
