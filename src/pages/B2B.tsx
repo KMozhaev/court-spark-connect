@@ -3,6 +3,7 @@ import B2BHeader from "@/components/b2b/B2BHeader";
 import B2BHero from "@/components/b2b/B2BHero";
 import B2BCurrentSolutions from "@/components/b2b/B2BCurrentSolutions";
 import B2BComingSoon from "@/components/b2b/B2BComingSoon";
+import B2BSolutionTabs from "@/components/b2b/B2BSolutionTabs";
 import B2BPricing from "@/components/b2b/B2BPricing";
 import B2BContactForm from "@/components/b2b/B2BContactForm";
 import B2BFooter from "@/components/b2b/B2BFooter";
@@ -33,6 +34,7 @@ const B2B = () => {
           {/* Pain Points - Current Solutions */}
           <section id="features">
             <B2BCurrentSolutions />
+            <B2BSolutionTabs />
             <B2BComingSoon />
           </section>
 
