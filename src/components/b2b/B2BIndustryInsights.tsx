@@ -11,46 +11,34 @@ interface CaseStudyProps {
 
 const CaseStudyCard = ({ caseNumber, title, before, implemented, results, source }: CaseStudyProps) => (
   <div className="bg-b2b-background-secondary border border-b2b-border rounded-2xl p-6 md:p-8 hover:border-b2b-primary/30 hover:shadow-lg transition-all duration-300 group">
-    <div className="text-sm font-semibold text-b2b-primary mb-3">
-      КЕЙС {caseNumber}
-    </div>
-    <h3 className="text-xl md:text-2xl font-bold text-b2b-text-primary mb-6">
-      {title}
-    </h3>
-    
+    <div className="text-sm font-semibold text-b2b-primary mb-3">КЕЙС {caseNumber}</div>
+    <h3 className="text-xl md:text-2xl font-bold text-b2b-text-primary mb-6">{title}</h3>
+
     <div className="space-y-5 mb-6">
       <div>
         <div className="text-sm font-medium text-b2b-text-muted mb-1">Было:</div>
-        <div className="text-b2b-text-secondary">
-          {before}
-        </div>
+        <div className="text-b2b-text-secondary">{before}</div>
       </div>
-      
+
       <div>
         <div className="text-sm font-medium text-b2b-text-muted mb-1">Внедрили:</div>
-        <div className="text-b2b-text-secondary">
-          {implemented}
-        </div>
+        <div className="text-b2b-text-secondary">{implemented}</div>
       </div>
-      
+
       <div>
         <div className="text-sm font-medium text-b2b-text-muted mb-2">Результат:</div>
         <ul className="space-y-2">
           {results.map((result, index) => (
             <li key={index} className="flex items-start text-b2b-text-secondary">
-              <span className="text-green-500 mr-2 mt-0.5 flex-shrink-0">
-                {result.icon}
-              </span>
+              <span className="text-green-500 mr-2 mt-0.5 flex-shrink-0">{result.icon}</span>
               <span className="text-sm">{result.text}</span>
             </li>
           ))}
         </ul>
       </div>
     </div>
-    
-    <div className="text-xs text-b2b-text-muted border-t border-b2b-border pt-4">
-      {source}
-    </div>
+
+    <div className="text-xs text-b2b-text-muted border-t border-b2b-border pt-4">{source}</div>
   </div>
 );
 
@@ -103,7 +91,8 @@ const B2BIndustryInsights = () => {
             Как другие клубы решили эти проблемы
           </h2>
           <p className="text-lg text-b2b-text-secondary max-w-2xl mx-auto">
-            Примеры из практики европейских клубов, которые внедрили автоматизацию
+            Примеры из практики европейских теннисных и падел клубов, которые внедряют специализированные решения для
+            автоматизации
           </p>
         </div>
 
@@ -120,9 +109,7 @@ const B2BIndustryInsights = () => {
             Клубы с системами бронирования зарабатывают в 3-5 раз больше
             <sup className="text-lg text-b2b-text-muted ml-1">⁴</sup>
           </h3>
-          <p className="text-lg text-b2b-text-secondary mb-6">
-            Не отставайте от мирового тренда
-          </p>
+          <p className="text-lg text-b2b-text-secondary mb-6">Не отставайте от мирового тренда</p>
           <a
             href="#contact"
             className="inline-flex items-center justify-center px-8 py-4 bg-b2b-primary text-white font-semibold rounded-xl hover:bg-b2b-primary-hover transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
